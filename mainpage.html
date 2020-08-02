@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>碧蓝连结</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/game-block-test.js"></script>
+    <script src="js/main.js"></script>
+    <script>if (window.module) module = window.module;</script>
+
+    <link rel="stylesheet" href="css/scorll.css">
+  </head>
+  <body class="scrollbar-outer">
+    <div id="gametitle">
+      <div class="copyright">2020 power by logsea</div>
+      <img src="pages_data/logo.png"alt="LOGO IMG">
+      <div class="game_start_btn_group">
+        <div class="mainbutton" id="gamestart">开始游戏</div>
+        <div class="mainbutton" id="gameend">退出游戏</div>
+        </div>
+      </div>
+    <div id="gamebody" class="height-no-active">
+
+    </div>
+    <div id="template-block">
+      <div class="block-test game-block appear">
+        <div class="paragraph">一段测试文本一段测试文本一段测试文本一段测试文本一段测试文本一段测试文本一段测试文本一段测试文本</div>
+        <div class="next-action">
+          </div>
+        </div>
+      <div class="game-block main-page-block appear">
+        <div class="main-page-block-top">
+          <div class="main-name">洛时雨</div>
+          <div class="main-lv">Lv.25</div>
+          <div class="main-exp">1055/2500</div>
+          </div>
+        <div class="main-page-block-top">
+          <div class="main-resource">
+            <div class="resource-icon resource-money-icon"></div>
+            <div class="resource-money-number">5000/40000</div>
+            </div>
+          <div class="main-resource">
+            <div class="resource-icon resource-oil-icon"></div>
+            <div class="resource-oil-number">10000/10000</div>
+            </div>
+          <div class="main-resource">
+            <div class="resource-icon resource-ruby-icon"></div>
+            <div class="resource-ruby-number">4000</div>
+            </div>
+          </div>
+        <div class="main-page-block-choose">
+          <div class="main-page-block-choose-action">
+            <div class="main-action main-action-character">角色</div>
+            <div class="main-action main-action-warehouse">仓库</div>
+            <div class="main-action main-action-building">建造</div>
+            <div class="main-action main-action-research">科研</div>
+            <div class="main-action main-action-mission">任务</div>
+            <div class="main-action main-action-shop">商店</div>
+            </div>
+          <div class="main-page-block-important">
+            <div class="main-fleet"></div>
+            <div class="main-battle"></div>
+            </div>
+          </div>
+        </div>
+      <div class="game-block char-select appear">
+        <div class="game-block-title">角色选择</div>
+        <div class="char-list">
+          <div class="char-list-block rarity-4">
+            <div class="char-list-block-image">
+              <div class="char-list-lv-rarity">
+                <div class="char-lv">Lv.75</div>
+                <div class="char-rarity">★★★</div>
+                </div>
+              <div class="char-name">亚历山大·涅夫斯基</div>
+              </div>
+            </div>
+          <div class="char-list-block rarity-1">
+            <div class="char-list-block-image">
+              <div class="char-list-lv-rarity">
+                <div class="char-lv">Lv.15</div>
+                <div class="char-rarity">★☆☆</div>
+                </div>
+              <div class="char-name">斯摩棱斯克</div>
+              </div>
+            </div>
+          <div class="char-list-block rarity-2">
+            <div class="char-list-block-image">
+              <div class="char-list-lv-rarity">
+                <div class="char-lv">Lv.120</div>
+                <div class="char-rarity">★★★★☆</div>
+                </div>
+              <div class="char-name">雷神</div>
+              </div>
+            </div>
+          <div class="char-list-block rarity-3">
+            <div class="char-list-block-image">
+              <div class="char-list-lv-rarity">
+                <div class="char-lv">Lv.1</div>
+                <div class="char-rarity">☆☆☆☆</div>
+                </div>
+              <div class="char-name">吉野</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </body>
+  <script>
+    require('./js/renderer.js')
+  </script>
+</html>

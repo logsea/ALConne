@@ -1,0 +1,31 @@
+{
+    "packname":"introduction",
+    "script":[{
+            "code":"intro=1",
+            "text":"这是一个表面被71%的海水覆盖着的蓝色星球，\n人类在这片碧蓝色之中出生、成长、孕育和发展属于自己的文明。",
+            "next":"introduction-intro=2"
+        },{
+            "code":"intro=2",
+            "text":"然而，伴随着它们的，还有不断膨胀的野心和欲望。\n表面风平浪静的世界格局之下，历史的暗流涌动。",
+            "next":"introduction-intro=3"
+        },{
+            "code":"intro=3",
+            "text":"终于，未知的敌人在海洋中出现，\n面对敌方压倒性的战力，各个阵营却仍然各自为战，\n最终换来的结果亦是惨痛的：\n人类失去了90%以上的海域控制权，科技和生活水平急速倒退。",
+            "next":"introduction-intro=4"
+        },{
+            "code":"intro=4",
+            "text":"人类对于海洋以及未知的敌人产生了深深的阴影，\n并且将那些将他们拖入深海黑暗之中的怪物称之为『塞壬』",
+            "next":"introduction-intro=5"
+        },{
+            "code":"intro=5",
+            "text":"数十年之后，各大阵营为了夺回曾经的辉煌，终于摒弃前嫌，\n联合创建了第三方军事组织『碧蓝航线』",
+            "next":"introduction-intro=6"
+        },{
+            "code":"intro=6",
+            "text":"碧蓝航线的宗旨在于：\n集结并共享来自来自世界各大阵营的科技与资源，\n建造出能够与塞壬抗衡的新锐部队，夺回海域的控制权。 ",
+            "next":"mainpage",
+            "next_cate": "main",
+            "next_text":"开始游戏"
+        }
+    ]
+}
