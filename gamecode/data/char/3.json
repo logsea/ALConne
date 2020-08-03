@@ -1,0 +1,34 @@
+{
+    "id":3,
+    "shipclass":"甘古特级",
+    "name":"甘古特",
+    "ename":"Gangut",
+    "type":3,
+    "subtype":4,
+    "rarity":1,
+    "position":550,
+    "attribute":{
+        "hp":2300,
+        "hpmax":21585,
+        "firepower":80,
+        "torpedo":0,
+        "aim":20,
+        "flexibility":5,
+        "torpflex":18,
+        "aa":10,
+        "armor":50,
+        "antitorp":50,
+        "antiair":10,
+        "reload":10,
+        "tpreload":50,
+        "repair":500,
+        "fastrepair":0
+    },
+    "equip":[
+        [0,0,0,0,0,0]
+    ],
+    "refine_equip":[
+        [0, 0, 0, 0, 0, 0]
+    ],
+    "skill":[]
+}

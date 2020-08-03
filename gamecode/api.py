@@ -23,6 +23,8 @@ class GameMessagePass:
             ret = retText.ReturnText(code)
         elif(action == "main"):
             ret = gamemain.ret_main_msg(code)
+        elif(action == "build"):
+            ret = gamemain.ret_build_msg(code)
         else:
             ret = {
                 "type":"error"

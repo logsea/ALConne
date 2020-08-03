@@ -112,7 +112,17 @@ body{
 .game-block-title{
     font-family: priconne;
     font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    user-select: none;
 }
+    .game-block-title-back{
+        transition: 200ms;
+        padding: 0 10px;
+    }
+        .game-block-title-back:hover{
+            background-color: #ff398580;
+        }
 
 .next-block{
     /* height: 30px; */
@@ -261,38 +271,59 @@ body{
         }
 
 .char-select{
-    height: 300px;
+    height: 350px;
 
 }
     .char-list{
         height: 300px;
+        width: 620px;
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
         align-content: flex-start;
         padding: 5px;
-        margin-left: 15px;
+        /* border-bottom: #000 solid 1px; */
+        /* margin-left: 15px; */
+        margin: 5px auto;
+        overflow-y: scroll;
+    }
+    .char-list::-webkit-scrollbar{
+        width: 5px;
     }
         .char-list-block{
             height: 100px;
             width: 190px;
             user-select: none;
             margin-bottom: 10px;
+            border-radius: 5px;
+            padding: 0 2px;
+            transition: 200ms;
         }
+            .char-list-block:hover{
+                filter: brightness(1.1);
+                box-shadow: 0 0 1px 1px #ff3985;
+            }
         .char-list-block:not(:last-child){
             margin-right: 5px;
         }
         .char-list-block.rarity-1{
-            /* background: url(""); */
-            border: seagreen solid 2px;
+            background: url("../pages_data/illu_list/rarity-0.png");
+            border: gray solid 2px;
         }
         .char-list-block.rarity-2{
-            border: royalblue solid 2px;
+            background: url("../pages_data/illu_list/rarity-1.png");
+            border: seagreen solid 2px;
         }
         .char-list-block.rarity-3{
-            border: slateblue solid 2px;
+            background: url("../pages_data/illu_list/rarity-2.png");
+            border: royalblue solid 2px;
         }
         .char-list-block.rarity-4{
+            background: url("../pages_data/illu_list/rarity-3.png");
+            border: slateblue solid 2px;
+        }
+        .char-list-block.rarity-5{
+            background: url("../pages_data/illu_list/rarity-4.png");
             border: gold solid 2px;
         }
             .char-list-block-image{
@@ -300,26 +331,39 @@ body{
                 width: 100%;
                 display: flex;
                 flex-direction: column;
+                background-image: url("../pages_data/illu_list/yukikaze.png");
             }
-            .char-list-lv-rarity{
+            .char-list-lv-star{
                 display: flex;
-                height: 80px;
+                height: 84px;
             }
             .char-lv{
                 font-family: resource;
                 width: 170px;
             }
-            .char-rarity{
+            .char-star{
                 font-family: priconne;
                 width: 20px;
                 writing-mode: vertical-lr;
+                -webkit-text-stroke: 1px #ff3985;
+                display: flex;
+                /* flex-direction: column; */
             }
+                .char-star-ready{
+                    color: goldenrod;
+                    text-shadow: 0 1px #ff3985, 1px 0 #ff3985, -1px 0 #ff3985, 0 -1px #ff3985;
+                }
+                .char-star-notready{
+                    color: transparent;
+                }
             .char-name{
                 font-family: priconne;
                 font-size: 14px;
-                height: 20px;
+                height: 16px;
                 text-align: center;
                 overflow: hidden;
+                background-color: #00000080;
+                color: #FFF;
             }
             .char-name div{
                 animation: 10s wordsLoop linear infinite normal;

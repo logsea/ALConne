@@ -1,5 +1,7 @@
 import numlimit as lmt
 
+db = None
+
 def new_unique_equip():
     ue = []
     for i in range(3):
@@ -28,6 +30,7 @@ class Player:
             ch["level"] = char["level"]
             ch["exp"] = char["exp"]
             ch["star"] = char["star"]
+            ch["rarity"] = char["rarity"]
             ch["refine"] = char["refine"]
             ch["equip"] = char["equip"]
             ch["slotenhence"] = char["slotenhence"]
@@ -94,7 +97,22 @@ class Player:
             ret["diamond"] = self.diamond
             ret["oil"] = self.oil
             ret["oilmax"] = lmt.player_oil_max(self.level)
-        return ret
+            return "main", ret
+        elif(cate == "charlist"):
+            ret = []
+            for charid in self.char:
+                ch_msg = {}
+                # raise(ValueError(str(db.char)+str(char)))
+                char_detail = db.char[charid]
+                char = self.char[charid]
+                ch_msg["id"] = char["id"]
+                ch_msg["level"] = char["level"]
+                ch_msg["star"] = char["star"]
+                ch_msg["rarity"] = char["rarity"]
+                ch_msg["refine"] = char["refine"]
+                ch_msg["name"] = char_detail.name
+                ret.append(ch_msg)
+            return "charlist", ret
 
 
     def char_message(self, charid):

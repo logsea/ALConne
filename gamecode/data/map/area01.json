@@ -1,0 +1,30 @@
+{
+    "areaid":1,
+    "areaname":"夏威夷港周围",
+    "areanickname":"M1",
+    "map":[
+        {
+            "mapid":1,
+            "mapnum":1,
+            "dropitem":[
+
+            ],
+            "enemy":[
+                [
+                    {
+                        "id":100001,
+                        "level":1
+                    },
+                    {
+                        "id":100001,
+                        "level":1
+                    },
+                    {
+                        "id":100001,
+                        "level":1
+                    }
+                ]
+            ]
+        }
+    ]
+}

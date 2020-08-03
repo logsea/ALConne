@@ -1,0 +1,35 @@
+{
+    "id":4,
+    "shipclass":"竞技神级",
+    "name":"竞技神",
+    "ename":"Hermes",
+    "type":4,
+    "subtype":2,
+    "rarity":1,
+    "position":950,
+    "attribute":{
+        "hp":1500,
+        "hpmax":17385,
+        "planebomb":54,
+        "planetorp":72,
+        "planeaa":70,
+        "aim":36,
+        "flexibility":6,
+        "torpflex":25,
+        "aa":91,
+        "armor":20,
+        "antitorp":15,
+        "antiair":25,
+        "reload":18,
+        "tpreload":50,
+        "repair":200,
+        "fastrepair":0
+    },
+    "equip":[
+        [0,0,0,0,0,0]
+    ],
+    "refine_equip":[
+        [0, 0, 0, 0, 0, 0]
+    ],
+    "skill":[]
+}

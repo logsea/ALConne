@@ -1,0 +1,30 @@
+{
+    "areaid":2,
+    "areaname":"夏威夷港西部",
+    "areanickname":"M2",
+    "map":[
+        {
+            "mapid":1,
+            "mapnum":1,
+            "dropitem":[
+
+            ],
+            "enemy":[
+                [
+                    {
+                        "id":100001,
+                        "level":7
+                    },
+                    {
+                        "id":100001,
+                        "level":7
+                    },
+                    {
+                        "id":100001,
+                        "level":7
+                    }
+                ]
+            ]
+        }
+    ]
+}

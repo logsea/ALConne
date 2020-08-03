@@ -1,7 +1,10 @@
 import json
 import glob
+import os
 from character import Character
 from game_text.utiles import equipRarityNeedBlueprint
+
+root = os.path.dirname(os.path.abspath(__file__))
 
 class DataBase:
     def __init__(self):
@@ -14,13 +17,13 @@ class DataBase:
         self.area = {}
         self.item = {}
         
-        file = open("data/char/all_char.txt")
+        file = open(os.path.join(root,"data/char/all_char.txt"))
         lines = [line.rstrip('\n') for line in file]
         for id in lines:
             char = self.read_char(id)
             self.char[char.id] = char
 
-        file = open("data/map/all_area.txt")
+        file = open(os.path.join(root,"data/map/all_area.txt"))
         lines = [line.rstrip('\n') for line in file]
         for id in lines:
             area = self.read_area(id)
@@ -64,12 +67,12 @@ class DataBase:
         ]
 
     def read_char(self, id):
-        file = open("data/char/"+id+".json", encoding='UTF-8')
+        file = open(os.path.join(root,"data/char/"+id+".json"), encoding='UTF-8')
         char = json.load(file)
         return Character(char)
 
     def read_area(self, id):
-        file = open("data/map/"+id+".json", encoding='UTF-8')
+        file = open(os.path.join(root,"data/map/"+id+".json"), encoding='UTF-8')
         area = json.load(file)
         area_ = {}
         area_["areaid"] = area["areaid"]
@@ -94,7 +97,7 @@ class DataBase:
     def read_items(self, types):
         for itype in types:
             self.item[itype] = {}
-            url = "data/item/"+itype
+            url = os.path.join(root,"data/item/"+itype)
             files = glob.glob(url+"/*.json")
             for file in files:
                 f = open(file, encoding='UTF-8')

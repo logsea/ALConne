@@ -1,0 +1,34 @@
+{
+    "id":2,
+    "shipclass":"奥马哈级",
+    "name":"里士满",
+    "ename":"Omaha",
+    "type":2,
+    "subtype":1,
+    "rarity":1,
+    "position":350,
+    "attribute":{
+        "hp":1050,
+        "hpmax":12425,
+        "firepower":41,
+        "torpedo":68,
+        "aim":37,
+        "flexibility":25,
+        "torpflex":55,
+        "aa":31,
+        "armor":14,
+        "antitorp":10,
+        "antiair":30,
+        "reload":22,
+        "tpreload":50,
+        "repair":100,
+        "fastrepair":5
+    },
+    "equip":[
+        [0,0,0,0,0,0]
+    ],
+    "refine_equip":[
+        [0, 0, 0, 0, 0, 0]
+    ],
+    "skill":[]
+}

@@ -1,0 +1,69 @@
+{
+    "id":1,
+    "shipclass":"L级",
+    "name":"莱特宁",
+    "ename":"Lightning",
+    "type":1,
+    "subtype":1,
+    "rarity":1,
+    "position":50,
+    "attribute":{
+        "hp":680,
+        "hpmax":8165,
+        "firepower":24,
+        "torpedo":95,
+        "aim":44,
+        "flexibility":31,
+        "torpflex":65,
+        "aa":19,
+        "armor":8,
+        "antitorp":0,
+        "antiair":40,
+        "reload":26,
+        "tpreload":35,
+        "repair":68,
+        "fastrepair":5
+    },
+    "equip":[
+        [1, 11, 22, 42, 61, 62],
+        [0, 0, 0, 0, 0, 0]
+    ],
+    "refine_equip":[
+        [1000001, 2000001, 3000002, 5000001, 0, 0]
+    ],
+    "unique_equip":[
+        9000001, 0, 0
+    ],
+    "skill":[
+        {
+            "name":"电光冲锋",
+            "desc":"冲向阵前，朝对方撒一波鱼雷，小幅提升这波鱼雷的航速，大幅提升这波鱼雷的命中。",
+            "effect":[]
+        },
+        {
+            "name":"掩护射击",
+            "desc":"炮击对方第二靠前的角色，并小幅提升我方最前方角色的机动值。",
+            "effect":[]
+        },
+        {
+            "name":"侧翼出击",
+            "desc":"撒出两波窄雷，微幅降低这波鱼雷的命中，大幅提升这波鱼雷的伤害，在技能施放期间中幅降低自身机动。",
+            "effect":[]
+        },
+        {
+            "name":"闪电意志",
+            "desc":"进入战斗时，大幅提升自身机动。",
+            "effect":[]
+        },
+        {
+            "name":"突进!炮雷齐射",
+            "desc":"使用炮击和鱼雷，向对方所有驱逐舰造成大量伤害，并超大幅降低对方机动值。",
+            "effect":[]
+        }
+    ],
+    "skillrotate":{
+        "starter":[2, 3],
+        "type1":[0, 2, 1, 3],
+        "type2":[2, 3, 5, 2, 5]
+    }
+}

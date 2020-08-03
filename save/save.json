@@ -1,11 +1,11 @@
 {
     "player":{
-        "name":"洛时雨",
+        "name":"logsea",
         "level":1,
         "exp":0,
-        "money":200000,
-        "diamond":12800,
-        "oil":10000
+        "money":5000,
+        "diamond":4000,
+        "oil":5000
     },
     "item":{
         "normal":[
@@ -38,9 +38,10 @@
     "char":[
         {
             "id":1,
-            "level":100,
+            "level":1,
             "exp":0,
-            "star":5,
+            "star":1,
+            "rarity":1,
             "refine":0,
             "equip":[
                 0, 0, 0, 0, 0, 0
@@ -77,6 +78,7 @@
             "level":1,
             "exp":0,
             "star":1,
+            "rarity":1,
             "refine":0,
             "equip":[
 
@@ -96,6 +98,7 @@
             "level":1,
             "exp":0,
             "star":1,
+            "rarity":1,
             "refine":0,
             "equip":[
 
@@ -115,6 +118,7 @@
             "level":1,
             "exp":0,
             "star":1,
+            "rarity":1,
             "refine":0,
             "equip":[
 

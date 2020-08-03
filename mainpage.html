@@ -12,6 +12,7 @@
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/game-block-test.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/button-action.js"></script>
     <script>if (window.module) module = window.module;</script>
 
     <link rel="stylesheet" href="css/scorll.css">
@@ -36,22 +37,22 @@
         </div>
       <div class="game-block main-page-block appear">
         <div class="main-page-block-top">
-          <div class="main-name">洛时雨</div>
-          <div class="main-lv">Lv.25</div>
-          <div class="main-exp">1055/2500</div>
+          <div class="main-name"></div>
+          <div class="main-lv"></div>
+          <div class="main-exp"></div>
           </div>
         <div class="main-page-block-top">
           <div class="main-resource">
             <div class="resource-icon resource-money-icon"></div>
-            <div class="resource-money-number">5000/40000</div>
+            <div class="resource-money-number"></div>
             </div>
           <div class="main-resource">
             <div class="resource-icon resource-oil-icon"></div>
-            <div class="resource-oil-number">10000/10000</div>
+            <div class="resource-oil-number"></div>
             </div>
           <div class="main-resource">
             <div class="resource-icon resource-ruby-icon"></div>
-            <div class="resource-ruby-number">4000</div>
+            <div class="resource-ruby-number"></div>
             </div>
           </div>
         <div class="main-page-block-choose">
@@ -70,45 +71,25 @@
           </div>
         </div>
       <div class="game-block char-select appear">
-        <div class="game-block-title">角色选择</div>
-        <div class="char-list">
-          <div class="char-list-block rarity-4">
-            <div class="char-list-block-image">
-              <div class="char-list-lv-rarity">
-                <div class="char-lv">Lv.75</div>
-                <div class="char-rarity">★★★</div>
-                </div>
-              <div class="char-name">亚历山大·涅夫斯基</div>
-              </div>
-            </div>
-          <div class="char-list-block rarity-1">
-            <div class="char-list-block-image">
-              <div class="char-list-lv-rarity">
-                <div class="char-lv">Lv.15</div>
-                <div class="char-rarity">★☆☆</div>
-                </div>
-              <div class="char-name">斯摩棱斯克</div>
-              </div>
-            </div>
-          <div class="char-list-block rarity-2">
-            <div class="char-list-block-image">
-              <div class="char-list-lv-rarity">
-                <div class="char-lv">Lv.120</div>
-                <div class="char-rarity">★★★★☆</div>
-                </div>
-              <div class="char-name">雷神</div>
-              </div>
-            </div>
-          <div class="char-list-block rarity-3">
-            <div class="char-list-block-image">
-              <div class="char-list-lv-rarity">
-                <div class="char-lv">Lv.1</div>
-                <div class="char-rarity">☆☆☆☆</div>
-                </div>
-              <div class="char-name">吉野</div>
-              </div>
-            </div>
+        <div class="game-block-title">
+          <div class="game-block-title-back"> ← </div>
+          <div class="game-block-title-name">角色选择</div>
           </div>
+        <div class="char-list"></div>
+        </div>
+      <div class="char-list-block">
+        <div class="char-list-block-image">
+          <div class="char-list-lv-star">
+            <div class="char-lv"></div>
+            <div class="char-star">
+              <div class="char-star-ready"></div>
+              <div class="char-star-notready"></div>
+              </div>
+            </div>
+          <div class="char-name"></div>
+          </div>
+        </div>
+      <div class="game-block char-detail appear">
         </div>
       </div>
   </body>

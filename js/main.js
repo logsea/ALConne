@@ -44,7 +44,7 @@ function append_plain_text(res){
 }
 
 function append_main(res){
-    let $elem = $("#template-block .main-page-block").clone();
+    let $elem = $("#template-block .main-page-block").clone(true, true);
 
     let money_text =    res["money"]+"/"+res["moneymax"];
     let oil_text =      res["oil"]+"/"+res["oilmax"];
@@ -69,6 +69,21 @@ function append_main(res){
     return $elem;
 }
 
+function append_charlist(res){
+    let $elem = $("#template-block .char-select").clone(true, true);
+    let $charblock = $("#template-block .char-list-block");
+    for(char of res){
+        $new_charblock = $charblock.clone()
+        $new_charblock.addClass("rarity-"+String(char["rarity"]))
+        $new_charblock.find(".char-lv").text("Lv."+String(char["level"]))
+        $new_charblock.find(".char-star-ready").text("★".repeat(char["star"]))
+        $new_charblock.find(".char-star-notready").text("★".repeat(5-char["star"]))
+        $new_charblock.find(".char-name").text(char["name"])
+        $elem.find(".char-list").append($new_charblock)
+    }
+    return $elem;
+}
+
 function get_add_block(res){
     if(res.type == "plaintext"){
         $newblock = append_plain_text(res);
@@ -76,6 +91,9 @@ function get_add_block(res){
     }
     else if(res.type == "main"){
         $newblock = append_main(res.msg);
+    }
+    else if(res.type == "charlist"){
+        $newblock = append_charlist(res.msg);
     }
     else{
         return undefined;
@@ -101,6 +119,13 @@ function add_block(resjson){
     window.setTimeout(function(){
         $("html, body").animate({ scrollTop: $(document).height() }, 1000);
     }, 110);
+}
+
+function get_charlist(){
+    send = {
+        'type':'main-charlist'
+    }
+    link_client_pagemain(send)
 }
 
 $(document).ready(function(){
