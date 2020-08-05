@@ -26,7 +26,11 @@ def load_savedata():
 load_savedata()
 
 def ret_main_msg(cate):
-    ret_type, ret_msg = player.ret_msg(cate)
+    if('-' in cate):
+        cate, cate_id = cate.split('-', 1)
+    else:
+        cate_id = None
+    ret_type, ret_msg = player.ret_msg(cate, cate_id)
     msg = {
         "type": ret_type,
         "msg": ret_msg

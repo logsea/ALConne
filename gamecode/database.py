@@ -14,6 +14,13 @@ class DataBase:
 
     def read(self):
         self.char = {}
+        # all attr
+        self.attr = [
+            "hp", "firepower", "torpedo", "planebomb", "planetorp", "planeaa",
+            "aim", "flexibility", "torpflex", "aa", "armor", "antitorp", "antiair",
+            "reload", "tpreload", "repair", "fastrepair"
+        ]
+
         self.area = {}
         self.item = {}
         

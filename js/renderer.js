@@ -26,7 +26,8 @@ function link_client(msg){
 
 function gamestart(){
     send = {
-        'type':'script-introduction-intro=1'
+        // 'type':'script-introduction-intro=1'
+        'type':'main-mainpage'
     }
     link_client(send)
 }

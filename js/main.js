@@ -73,13 +73,52 @@ function append_charlist(res){
     let $elem = $("#template-block .char-select").clone(true, true);
     let $charblock = $("#template-block .char-list-block");
     for(char of res){
-        $new_charblock = $charblock.clone()
+        let $new_charblock = $charblock.clone()
         $new_charblock.addClass("rarity-"+String(char["rarity"]))
+        $new_charblock.find(".char-id").text(char["id"])
         $new_charblock.find(".char-lv").text("Lv."+String(char["level"]))
         $new_charblock.find(".char-star-ready").text("★".repeat(char["star"]))
         $new_charblock.find(".char-star-notready").text("★".repeat(5-char["star"]))
         $new_charblock.find(".char-name").text(char["name"])
+        $new_charblock.click(evnet=>{
+            get_chardetail($(event.target).find('.char-id').text())
+        })
         $elem.find(".char-list").append($new_charblock)
+    }
+    return $elem;
+}
+
+function append_chardetail(res){
+    let attr = [
+        "hp", "armor", "antitorp", "firepower", "torpedo", "aa", "planebomb", "planetorp", "planeaa",
+        "aim", "flexibility", "torpflex", "antiair",
+        "reload", "tpreload", "repair", "fastrepair"
+    ]
+    let attrname = [
+        "HP", "装甲", "防雷", "火力", "鱼雷", "对空", "航弹", "航雷", "空战", "命中",
+        "闪避", "鱼雷机动", "防空", 
+        "装填", "技能装填", "维修", "损管"
+    ]
+    let $elem = $("#template-block .char-detail").clone(true, true);
+    $elem.find(".char-detail-attr-lv").text("Lv."+res["level"])
+    $elem.find(".char-detail-attr-exp").text("EXP."+res["exp"]+"/"+res["expmax"])
+    exp_per = String((res["exp"]/res["expmax"]*100).toFixed(1))+"%";
+    $elem.find(".char-detail-attr-exp").css("background", 
+        "linear-gradient(to right,rgb(129, 185, 77),rgb(129, 185, 77) " + 
+        exp_per + ", rgba(129, 185, 77, 0.2) " + exp_per + ", rgba(129, 185, 77, 0.2))");
+    $elem.find(".char-detail-name").text(res["name"])
+    for(const attrid of Array(attr.length).keys()){
+        $attrdiv = $("<div/>", {
+            "class": "char-detail-attr-item char-detail-attr-short"
+        });
+        $attrdiv.append($("<div/>", {
+            "class": "char-detail-attr-item-name"
+        }).text(attrname[attrid]))
+        $attrdiv.append($("<div/>", {
+            "class": "char-detail-attr-item-value"
+        }).text(res["attr"][attr[attrid]]))
+        // $attrdiv.text(attrname[attrid]+":"+res["attr"][attr[attrid]])
+        $elem.find(".char-detail-attr").append($attrdiv)
     }
     return $elem;
 }
@@ -94,6 +133,9 @@ function get_add_block(res){
     }
     else if(res.type == "charlist"){
         $newblock = append_charlist(res.msg);
+    }
+    else if(res.type == "chardetail"){
+        $newblock = append_chardetail(res.msg);
     }
     else{
         return undefined;
@@ -124,6 +166,13 @@ function add_block(resjson){
 function get_charlist(){
     send = {
         'type':'main-charlist'
+    }
+    link_client_pagemain(send)
+}
+
+function get_chardetail(id){
+    send = {
+        'type':'main-chardetail-'+String(id)
     }
     link_client_pagemain(send)
 }

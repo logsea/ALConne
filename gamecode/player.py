@@ -85,7 +85,7 @@ class Player:
             }
             self.item["mentalunit"][it["id"]] = it
 
-    def ret_msg(self, cate):
+    def ret_msg(self, cate, id = None):
         ret = {}
         if(cate == "mainpage"):
             ret["name"] = self.name
@@ -113,6 +113,28 @@ class Player:
                 ch_msg["name"] = char_detail.name
                 ret.append(ch_msg)
             return "charlist", ret
+        elif(cate == "chardetail"):
+            id = int(id)
+            char_detail = db.char[id]
+            char = self.char[id]
+            ret["id"] = char["id"]
+            ret["level"] = char["level"]
+            ret["exp"] = char["exp"]
+            ret["expmax"] = lmt.char_exp_need[char["level"]]
+            ret["star"] = char["star"]
+            ret["rarity"] = char["rarity"]
+            ret["refine"] = char["refine"]
+            ret["name"] = char_detail.name
+            ret["attr"] = self.char_get_attr(id)
+            return "chardetail", ret
+
+    def char_get_attr(self, id):
+        attr = {}
+        char_detail = db.char[id]
+        char = self.char[id]
+        for attr_name in db.attr:
+            attr[attr_name] = char_detail.attrlv(attr_name, char["level"])
+        return attr
 
 
     def char_message(self, charid):
