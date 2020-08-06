@@ -1,10 +1,35 @@
 {
     "areaid":1,
-    "areaname":"夏威夷港周围",
+    "areaname":"第一次塞壬入侵",
     "areanickname":"M1",
     "map":[
         {
+            "mapname":"近海训练-1",
             "mapid":1,
+            "mapnum":1,
+            "dropitem":[
+
+            ],
+            "enemy":[
+                [
+                    {
+                        "id":100001,
+                        "level":1
+                    },
+                    {
+                        "id":100001,
+                        "level":1
+                    },
+                    {
+                        "id":100001,
+                        "level":1
+                    }
+                ]
+            ]
+        },
+        {
+            "mapname":"近海训练-2",
+            "mapid":2,
             "mapnum":1,
             "dropitem":[
 

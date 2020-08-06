@@ -40,7 +40,7 @@ class DataBase:
         self.item["blueprint"] = {}
         self.read_items(["equip", "normal"])
 
-        self.char_equipslot_rarity = [
+        self.charEquipslotRarity = [
             [1, 1, 1, 1, 1, 1],
             [2, 1, 1, 1, 1, 1],
             [2, 2, 2, 2, 2, 2],
@@ -52,7 +52,7 @@ class DataBase:
             [5, 5, 5, 5, 5, 5],
             [6, 6, 6, 5, 5, 5],
         ]
-        self.rarity_enhence = [
+        self.rarityEnhence = [
             None,
             [],
             [10],
@@ -61,13 +61,13 @@ class DataBase:
             [20, 20, 60],
             [30, 30, 80, 110],
         ]
-        self.exp_core = [
+        self.expCore = [
             11, 12, 13, 14, 15
         ]
-        self.exp_add = [
+        self.expAdd = [
             100, 300, 1000, 3000, 10000
         ]
-        self.unique_equip_materia = [
+        self.uniqueEquipMateria = [
             [10, 0, 20, 5, 0],
             [15, 0, 20, 50, 5],
             [15, 5, 20, 150, 50]
@@ -89,6 +89,7 @@ class DataBase:
         for i in area["map"]:
             map = {}
             map["mapid"] = i["mapid"]
+            map["mapname"] = i["mapname"]
             map["mapnum"] = (int)(i["mapnum"])
             map["enemy"] = []
             for j in range(map["mapnum"]):

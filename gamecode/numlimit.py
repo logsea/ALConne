@@ -72,4 +72,6 @@ modern_refine_mentalunit = [
 unlock_mentalunit = [
     10, 45, 145, 185, 225, 300
 ]
+
+max_area_num = 2
 # print(charskill_lvup_money)

@@ -1,9 +1,10 @@
 {
     "areaid":2,
-    "areaname":"夏威夷港西部",
+    "areaname":"碧蓝航线组建",
     "areanickname":"M2",
     "map":[
         {
+            "mapname":"近海障碍清除",
             "mapid":1,
             "mapnum":1,
             "dropitem":[

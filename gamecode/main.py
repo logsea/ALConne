@@ -5,11 +5,13 @@ import json
 
 import database
 import character
+import chapter
 import player as playerclass
 
 db = database.DataBase()
 character.db = db
 playerclass.db = db
+chapter.db = db
 player = playerclass.Player()
 
 print("Game Start")
@@ -27,12 +29,18 @@ load_savedata()
 
 def ret_main_msg(cate):
     if('-' in cate):
-        cate, cate_id = cate.split('-', 1)
+        cate, cateId = cate.split('-', 1)
     else:
-        cate_id = None
-    ret_type, ret_msg = player.ret_msg(cate, cate_id)
+        cateId = None
+    if(cate == "mainpage" or cate == "charlist" or cate == "chardetail"):
+        retType, retMsg = player.ret_msg(cate, cateId)
+    elif(cate == "chapter"):
+        retType, retMsg = chapter.ret_msg(cate, cateId)
+    else:
+        retType = None
+        retMsg = None
     msg = {
-        "type": ret_type,
-        "msg": ret_msg
+        "type": retType,
+        "msg": retMsg
     }
     return msg

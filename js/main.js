@@ -1,4 +1,5 @@
 link_client_pagemain = null;
+link_client_noblock_pagemain = null;
 let mainFrame = null;
 const max_block_num = 50;
 
@@ -85,6 +86,9 @@ function append_charlist(res){
         })
         $elem.find(".char-list").append($new_charblock)
     }
+    $elem.find(".game-block-title-back").click(event=>{
+        get_main()
+    })
     return $elem;
 }
 
@@ -120,7 +124,54 @@ function append_chardetail(res){
         // $attrdiv.text(attrname[attrid]+":"+res["attr"][attr[attrid]])
         $elem.find(".char-detail-attr").append($attrdiv)
     }
+    $elem.find(".game-block-title-back").click(event=>{
+        get_charlist()
+    })
     return $elem;
+}
+
+function append_mapselect(res){
+    let $elem = $("#template-block .map-select").clone(true, true);
+    $elem.find(".map-select-chapter").text(res["areaname"])
+    if("prev" in res) $elem.find(".map-select-prev").addClass("disable")
+    if("next" in res) $elem.find(".map-select-next").addClass("disable")
+    for(const chaptermap of res["map"]){
+        $chaptermap_button = $("<div/>", {
+            "class": "map-select-subchapter"
+        }).text(res["areaid"] + "-" + chaptermap["mapid"])
+        $elem.find(".map-select-subchapter-select").append($chaptermap_button)
+    }
+    $elem.find(".map-select-prev").click(event=>{
+        rememberAreaId -= 1
+        res = get_noblock_mapselect_changearea(Number(rememberAreaId), modify_mapselect, event.target)
+    })
+    $elem.find(".map-select-next").click(event=>{
+        rememberAreaId += 1
+        res = get_noblock_mapselect_changearea(Number(rememberAreaId), modify_mapselect, event.target)
+    })
+    return $elem;
+}
+
+function modify_mapselect(res, $dom){
+    try{
+        $elem = $($dom).closest('.map-select')
+        $elem.find(".map-select-chapter").text(res["areaname"])
+        if("prev" in res) $elem.find(".map-select-prev").addClass("disable")
+        else $elem.find(".map-select-prev").removeClass("disable")
+        if("next" in res) $elem.find(".map-select-next").addClass("disable")
+        else $elem.find(".map-select-next").removeClass("disable")
+        $elem.find(".map-select-subchapter-select").empty()
+        for(const chaptermap of res["map"]){
+            $chaptermap_button = $("<div/>", {
+                "class": "map-select-subchapter"
+            }).text(res["areaid"] + "-" + chaptermap["mapid"])
+            $elem.find(".map-select-subchapter-select").append($chaptermap_button)
+        }
+        return true
+    }
+    catch{
+        return false
+    }
 }
 
 function get_add_block(res){
@@ -136,6 +187,9 @@ function get_add_block(res){
     }
     else if(res.type == "chardetail"){
         $newblock = append_chardetail(res.msg);
+    }
+    else if(res.type == "mapselect"){
+        $newblock = append_mapselect(res.msg);
     }
     else{
         return undefined;
@@ -163,22 +217,6 @@ function add_block(resjson){
     }, 110);
 }
 
-function get_charlist(){
-    send = {
-        'type':'main-charlist'
-    }
-    link_client_pagemain(send)
-}
-
-function get_chardetail(id){
-    send = {
-        'type':'main-chardetail-'+String(id)
-    }
-    link_client_pagemain(send)
-}
-
 $(document).ready(function(){
     mainFrame = $("#gamebody");
-
-
 })
