@@ -6,9 +6,16 @@
         {
             "mapname":"近海障碍清除",
             "mapid":1,
-            "mapnum":1,
+            "mapnum":[1, 1],
+            "enemylevel":[1, 3],
             "dropitem":[
-
+                {"id":"money", "minvalue":20, "maxvalue":40}
+            ],
+            "mapdrop":[
+                {"id":"exp", "minvalue":6, "maxvalue":6}
+            ],
+            "occurenemy":[
+                100001
             ],
             "enemy":[
                 [

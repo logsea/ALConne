@@ -81,26 +81,26 @@ class DataBase:
     def read_area(self, id):
         file = open(os.path.join(root,"data/map/"+id+".json"), encoding='UTF-8')
         area = json.load(file)
-        area_ = {}
-        area_["areaid"] = area["areaid"]
-        area_["areaname"] = area["areaname"]
-        area_["areanickname"] = area["areanickname"]
-        area_["map"] = []
-        for i in area["map"]:
-            map = {}
-            map["mapid"] = i["mapid"]
-            map["mapname"] = i["mapname"]
-            map["mapnum"] = (int)(i["mapnum"])
-            map["enemy"] = []
-            for j in range(map["mapnum"]):
-                enemy = i["enemy"][j]
-                mapenemy = []
-                for ey in enemy:
-                    mapenemy.append({"id":ey["id"], "level":ey["level"]})
-                map["enemy"].append(mapenemy)
-            area_["map"].append(map)
+        # area_ = {}
+        # area_["areaid"] = area["areaid"]
+        # area_["areaname"] = area["areaname"]
+        # area_["areanickname"] = area["areanickname"]
+        # area_["map"] = []
+        # for i in area["map"]:
+        #     map = {}
+        #     map["mapid"] = i["mapid"]
+        #     map["mapname"] = i["mapname"]
+        #     map["mapnum"] = (int)(i["mapnum"])
+        #     map["enemy"] = []
+        #     for j in range(map["mapnum"]):
+        #         enemy = i["enemy"][j]
+        #         mapenemy = []
+        #         for ey in enemy:
+        #             mapenemy.append({"id":ey["id"], "level":ey["level"]})
+        #         map["enemy"].append(mapenemy)
+        #     area_["map"].append(map)
 
-        return area_
+        return area
         
     def read_items(self, types):
         for itype in types:
@@ -146,3 +146,8 @@ class DataBase:
                 itemobj["desc"] = item["desc"]
             return itemobj
 
+    def get_rarity(self, id):
+        if(id == "exp" or id == "money"):
+            return 4
+        else:
+            return 3

@@ -562,3 +562,86 @@ body{
                 .map-select-subchapter:hover{
                     background-color: #ff398580;
                 }
+
+.map-detail{
+    height: 300px;
+}
+    .map-detail-map{
+        display: flex;
+        flex-direction: row;
+        margin: 0 5px;
+    }
+        .map-detail-msg{
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-content: flex-start;
+            font-family: priconne;
+        }
+            .map-detail-msg-item{
+                height: 24px;
+                margin-bottom: 5px;
+                margin-right: 50px;
+                border-bottom: #aaa solid 1px;
+                display: flex;
+                flex-direction: row;
+            }
+                .map-detail-msg-name{
+                    height: inherit;
+                    width: 30%;
+                }
+                .map-detail-msg-value{
+                    height: inherit;
+                    width: 70%;
+                    text-align: right;
+                }
+            .map-detail-msg-intro{
+                margin-right: 20px;
+            }
+        .map-detail-other{
+            width: 50%;
+        }
+            .map-detail-image{
+                height: 140px;
+                background-image: url("../pages_data/map/map_1.jpeg");
+                background-repeat: no-repeat;
+                background-position: center;
+                margin-bottom: 5px;
+                transition: 200ms;
+            }
+                .map-detail-image:hover{
+                    box-shadow: 0 0 3px 3px #ff3985;
+                    filter: brightness(1.2);
+                }
+                .map-detail-image-battlestart{
+                    height: 100%;
+                    width: 100%;
+                    opacity: 0;
+                    transition: 200ms;
+                    background-image: url("../pages_data/map/battlestart.png");
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+                    .map-detail-image:hover .map-detail-image-battlestart{
+                        opacity: 1;
+                    }
+            .map-detail-enemy, .map-detail-loot{
+                height: 55px;
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 5px;
+            }
+                .map-detail-enemy .map-detail-item, .map-detail-loot .map-detail-item{
+                    height: 50px;
+                    width: 50px;
+                    margin: 3px 5px 0 0;
+                    border-width: 2px;
+                }  
+                .map-detail-loot-title{
+                    height: 100%;
+                    writing-mode: vertical-lr;
+                    font-family: priconne;
+                    font-size: 16px;
+                    width: 20px;
+                    /* margin-left: -10px; */
+                }

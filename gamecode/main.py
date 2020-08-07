@@ -34,7 +34,7 @@ def ret_main_msg(cate):
         cateId = None
     if(cate == "mainpage" or cate == "charlist" or cate == "chardetail"):
         retType, retMsg = player.ret_msg(cate, cateId)
-    elif(cate == "chapter"):
+    elif(cate == "chapter" or cate == "map"):
         retType, retMsg = chapter.ret_msg(cate, cateId)
     else:
         retType = None

@@ -36,6 +36,19 @@ function get_noblock_mapselect_changearea(id, func, target){
     return res
 }
 
+function get_mapdetail(area, id){
+    send = {
+        'type':'main-map-'+String(area)+'-'+String(id)
+    }
+    link_client_pagemain(send)
+}
+
+function get_item_image_url(itemid){
+    if(itemid == "exp") return "./pages_data/item/exp.png"
+    if(itemid == "money") return "./pages_data/item/money.png"
+    else return "./pages_data/item/"+String(itemid)+".png"
+}
+
 
 $(document).ready(()=>{
     $(".main-action-character").click(function(){

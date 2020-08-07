@@ -139,15 +139,27 @@ function append_mapselect(res){
         $chaptermap_button = $("<div/>", {
             "class": "map-select-subchapter"
         }).text(res["areaid"] + "-" + chaptermap["mapid"])
+        $chaptermap_button.click(event=>{
+            text = $(event.target).text()
+            id = text.split('-')[1]
+            get_mapdetail(rememberAreaId, id)
+        })
         $elem.find(".map-select-subchapter-select").append($chaptermap_button)
     }
     $elem.find(".map-select-prev").click(event=>{
         rememberAreaId -= 1
+        $elem.find(".map-select-prev").addClass("disable")
+        $elem.find(".map-select-next").addClass("disable")
         res = get_noblock_mapselect_changearea(Number(rememberAreaId), modify_mapselect, event.target)
     })
     $elem.find(".map-select-next").click(event=>{
         rememberAreaId += 1
+        $elem.find(".map-select-prev").addClass("disable")
+        $elem.find(".map-select-next").addClass("disable")
         res = get_noblock_mapselect_changearea(Number(rememberAreaId), modify_mapselect, event.target)
+    })
+    $elem.find(".game-block-title-back").click(event=>{
+        get_main()
     })
     return $elem;
 }
@@ -174,6 +186,27 @@ function modify_mapselect(res, $dom){
     }
 }
 
+function append_mapdetail(res){
+    let $elem = $("#template-block .map-detail").clone(true, true);
+    $elem.find(".game-block-title-name").text(res["areaid"]+"-"+res["mapid"]+" "+res["mapname"])
+    let $level = $elem.find(".map-detail-enemylevel")
+    $level.find(".map-detail-msg-value").text(String(res["enemylevel"][0])+"-"+String(res["enemylevel"][1]))
+    let $mapnum = $elem.find(".map-detail-mapnum")
+    if(res["mapnum"][0] == res["mapnum"][1])
+        $mapnum.find(".map-detail-msg-value").text(String(res["mapnum"][0]))
+    else $mapnum.find(".map-detail-msg-value").text(String(res["mapnum"][0])+"-"+String(res["mapnum"][1]))
+    $elem.find(".map-detail-msg-intro").text(res["intro"])
+    for(const item of res["mapdrop"]){
+        $item = $("<div/>", {
+            "class": "map-detail-item rarity-"+String(item["rarity"])
+        })
+        item_image = "url("+get_item_image_url(item["id"])+")"
+        $item.css("background-image", item_image)
+        $elem.find(".map-detail-loot").append($item)
+    }
+    return $elem
+}
+
 function get_add_block(res){
     if(res.type == "plaintext"){
         $newblock = append_plain_text(res);
@@ -190,6 +223,9 @@ function get_add_block(res){
     }
     else if(res.type == "mapselect"){
         $newblock = append_mapselect(res.msg);
+    }
+    else if(res.type == "mapdetail"){
+        $newblock = append_mapdetail(res.msg);
     }
     else{
         return undefined;
@@ -219,4 +255,5 @@ function add_block(resjson){
 
 $(document).ready(function(){
     mainFrame = $("#gamebody");
+    $("#template-block .game-block").removeClass("appear")
 })
