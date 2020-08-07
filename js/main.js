@@ -204,6 +204,9 @@ function append_mapdetail(res){
         $item.css("background-image", item_image)
         $elem.find(".map-detail-loot").append($item)
     }
+    $elem.find(".game-block-title-back").click(event=>{
+        get_mapselect(rememberAreaId)
+    })
     return $elem
 }
 
@@ -255,5 +258,23 @@ function add_block(resjson){
 
 $(document).ready(function(){
     mainFrame = $("#gamebody");
-    $("#template-block .game-block").removeClass("appear")
+    // $("#template-block .game-block").removeClass("appear")
+
+
+    let templatecanvas = $("#template-block .map-gridmap .map-grid-map")[0]
+    let context = templatecanvas.getContext('2d')
+    context.fillStyle="rgb(93, 177, 255)";
+    context.fillRect(0,0,650,400); 
+    for (let i = 0; i < 14; i+=1){
+        context.moveTo(i * 50, 0)
+        context.lineTo(i * 50, templatecanvas.height)
+    }
+    for (let i = 0; i < 9; i+=1){
+        context.moveTo(0, i * 50)
+        context.lineTo(templatecanvas.width, i * 50)
+    }
+    context.strokeStyle = 'black'
+    context.lineWidth = 1
+    context.stroke()
+    context.beginPath()
 })

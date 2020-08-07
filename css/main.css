@@ -645,3 +645,51 @@ body{
                     width: 20px;
                     /* margin-left: -10px; */
                 }
+
+.map-gridmap{
+
+}
+    .map-grid-container{
+        margin: 5px auto;
+    }
+        .map-grid-map{
+            width: 650px;
+            height: 400px;
+            box-shadow: 0 0 4px rgba(0,0,0,0.5);
+            padding: 5px;
+            transition: 200ms;
+        }
+            .map-grid-map:hover{
+                box-shadow: 0 0 6px #ff3985;
+            }
+        .map-grid-player{
+            position: absolute;
+            z-index: 10;
+            width: 50px;
+            height: 50px;
+            background-image: url("");
+        }
+    .map-grid-action{
+        display: flex;
+        flex-direction: row;
+    }
+        .map-grid-action-item{
+            width: 100px;
+            font-family: priconne;
+            height: 28px;
+            font-size: 20px;
+            border: #ff3985 solid 1px;
+            border-radius: 5px;
+            transition: 200ms;
+            margin: 5px 10px 0 0;
+            text-align: center;
+            padding: auto;
+        }
+            .map-grid-action-item:hover{
+                background-color: #ff398580;
+            }
+            .map-grid-battle{
+                color: orange;
+                -webkit-text-stroke: 1px black;
+                margin-right: 50px;
+            }
