@@ -651,6 +651,7 @@ body{
 }
     .map-grid-container{
         margin: 5px auto;
+        position: relative;
     }
         .map-grid-map{
             width: 650px;
@@ -658,6 +659,9 @@ body{
             box-shadow: 0 0 4px rgba(0,0,0,0.5);
             padding: 5px;
             transition: 200ms;
+            background-image: url("../pages_data/map/sea_day.png");
+            background-repeat: no-repeat;
+            background-size: cover;
         }
             .map-grid-map:hover{
                 box-shadow: 0 0 6px #ff3985;
@@ -667,7 +671,12 @@ body{
             z-index: 10;
             width: 50px;
             height: 50px;
-            background-image: url("");
+            left: 0;
+            top: 0;
+            background-image: url("../pages_data/map/player.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 5px 0 0 5px;
         }
     .map-grid-action{
         display: flex;

@@ -36,9 +36,18 @@ function get_noblock_mapselect_changearea(id, func, target){
     return res
 }
 
-function get_mapdetail(area, id){
+function get_mapdetail(area, mapid){
     send = {
-        'type':'main-map-'+String(area)+'-'+String(id)
+        'type':'main-map-'+String(area)+'-'+String(mapid)
+    }
+    link_client_pagemain(send)
+    rememberAreaId = area
+    rememberMapId = mapid
+}
+
+function get_mapgrid_initial(){
+    send = {
+        'type':'main-gridmapstart-'+String(rememberAreaId)+'-'+String(rememberMapId)
     }
     link_client_pagemain(send)
 }

@@ -1,6 +1,9 @@
 import numlimit as lmt
+from game_map import GameMap
 
 db = None
+
+gameMap = None
 
 def area_msg(area_id):
     msg = {}
@@ -54,6 +57,26 @@ def map_msg(area_id, map_id):
     msg["mapdrop"] = itemlist
     return msg
 
+def mapgrid_msg(area_id, map_id):
+    global gameMap
+    msg = {}
+    for i in db.area[int(area_id)]["map"]:
+        if(int(i["mapid"]) == int(map_id)):
+            needMap = i
+            break
+    msg["mapname"] = needMap["mapname"]
+    msg["areaid"] = db.area[int(area_id)]["areanickname"]
+    msg["mapid"] = needMap["mapid"]
+    gameMap = GameMap()
+    gameMap.set_map_msg(needMap)
+    msg["gridmsg"] = gameMap.get_map_msg_newmap()
+    return msg
+
+def mapgrid_next_msg():
+    global gameMap
+    msg = {}
+    return msg
+
 
 def ret_msg(cate, cate_id = None):
     if(cate == "chapter"):
@@ -63,3 +86,13 @@ def ret_msg(cate, cate_id = None):
         areaid, mapid = cate_id.split("-")
         msg = map_msg(areaid, mapid)
         return "mapdetail", msg
+    elif(cate == "gridmapstart"):
+        areaid, mapid = cate_id.split("-")
+        msg = mapgrid_msg(areaid, mapid)
+        return "gridmapstart", msg
+    elif(cate == "gridmapnext"):
+        over, msg = mapgrid_next_msg(areaid, mapid)
+        if(over == True):
+            return "gridmapend", msg
+        else:
+            return "gridmapnext", msg

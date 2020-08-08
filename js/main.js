@@ -141,8 +141,8 @@ function append_mapselect(res){
         }).text(res["areaid"] + "-" + chaptermap["mapid"])
         $chaptermap_button.click(event=>{
             text = $(event.target).text()
-            id = text.split('-')[1]
-            get_mapdetail(rememberAreaId, id)
+            mapid = text.split('-')[1]
+            get_mapdetail(rememberAreaId, mapid)
         })
         $elem.find(".map-select-subchapter-select").append($chaptermap_button)
     }
@@ -204,9 +204,20 @@ function append_mapdetail(res){
         $item.css("background-image", item_image)
         $elem.find(".map-detail-loot").append($item)
     }
+    $elem.find(".map-detail-image-battlestart").click(event=>{
+        get_mapgrid_initial()
+    })
     $elem.find(".game-block-title-back").click(event=>{
         get_mapselect(rememberAreaId)
     })
+    return $elem
+}
+
+function append_gridmap(res){
+    let $elem = $("#template-block .map-gridmap").clone(true, true);
+    $elem.find(".game-block-title-name").text(res["areaid"]+"-"+res["mapid"]+" "+res["mapname"])
+    let canvas = $elem.find(".map-grid-map")[0]
+    draw_gridmap(canvas, res["gridmsg"])
     return $elem
 }
 
@@ -229,6 +240,9 @@ function get_add_block(res){
     }
     else if(res.type == "mapdetail"){
         $newblock = append_mapdetail(res.msg);
+    }
+    else if(res.type == "gridmapstart"){
+        $newblock = append_gridmap(res.msg);
     }
     else{
         return undefined;
@@ -261,20 +275,20 @@ $(document).ready(function(){
     // $("#template-block .game-block").removeClass("appear")
 
 
-    let templatecanvas = $("#template-block .map-gridmap .map-grid-map")[0]
-    let context = templatecanvas.getContext('2d')
-    context.fillStyle="rgb(93, 177, 255)";
-    context.fillRect(0,0,650,400); 
-    for (let i = 0; i < 14; i+=1){
-        context.moveTo(i * 50, 0)
-        context.lineTo(i * 50, templatecanvas.height)
-    }
-    for (let i = 0; i < 9; i+=1){
-        context.moveTo(0, i * 50)
-        context.lineTo(templatecanvas.width, i * 50)
-    }
-    context.strokeStyle = 'black'
-    context.lineWidth = 1
-    context.stroke()
-    context.beginPath()
+    // let templatecanvas = $("#template-block .map-gridmap .map-grid-map")[0]
+    // let context = templatecanvas.getContext('2d')
+    // // context.fillStyle="rgb(93, 177, 255)";
+    // // context.fillRect(0,0,650,400); 
+    // for (let i = 0; i < 14; i+=1){
+    //     context.moveTo(i * 50, 0)
+    //     context.lineTo(i * 50, templatecanvas.height)
+    // }
+    // for (let i = 0; i < 9; i+=1){
+    //     context.moveTo(0, i * 50)
+    //     context.lineTo(templatecanvas.width, i * 50)
+    // }
+    // context.strokeStyle = 'black'
+    // context.lineWidth = 1
+    // context.stroke()
+    // context.beginPath()
 })

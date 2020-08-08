@@ -18,6 +18,20 @@
             "occurenemy":[
                 100001
             ],
+            "grid":{
+                "enemy":{
+                    "pos":[[3,1], [5,1]],
+                    "appear":[1,1]
+                },
+                "boss":{
+                    "needenemy":2,
+                    "pos":[7,1]
+                },
+                "player":{
+                    "startpos":[1,1]
+                }
+            },
+            "mapsize":[7, 1],
             "enemy":[
                 [
                     {
