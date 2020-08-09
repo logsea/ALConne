@@ -21,6 +21,7 @@ class Player:
         self.money = player["money"]
         self.diamond = player["diamond"]
         self.oil = player["oil"]
+        self.secretary = player["secretary"]
 
         chars = save["char"]
         self.char = {}
@@ -97,6 +98,7 @@ class Player:
             ret["diamond"] = self.diamond
             ret["oil"] = self.oil
             ret["oilmax"] = lmt.player_oil_max(self.level)
+            ret["secretary"] = self.secretary
             return "main", ret
         elif(cate == "charlist"):
             ret = []

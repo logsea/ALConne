@@ -180,15 +180,15 @@ body{
     }
 
 .main-page-block{
-    height: 180px;
-    background-image: url("../pages_data/main-back.png");
+    height: 200px;
+    /* background-image: url("../pages_data/main-back.png"); */
     background-size: 50%;
     background-repeat: no-repeat;
     background-position-x: right;
 }
 
 .main-page-block:hover{
-    background-image: url("../pages_data/main-back.png");
+    /* background-image: url("../pages_data/main-back.png"); */
     background-size: 50%;
     background-repeat: no-repeat;
     background-position-x: right;
@@ -198,6 +198,7 @@ body{
     display: flex;
     flex-direction: row;
     margin-left: 10px;
+    margin-top: 10px;
     user-select: none;
 }
 
@@ -244,6 +245,7 @@ body{
 .main-page-block-choose{
     display: flex;
     flex-direction: row;
+    margin-top: 10px;
 }
 
     .main-page-block-choose-action{
@@ -657,7 +659,9 @@ body{
             width: 650px;
             height: 400px;
             box-shadow: 0 0 4px rgba(0,0,0,0.5);
-            padding: 5px;
+            margin-left: calc(50% - 325px);
+            margin-top: 5px;
+            margin-bottom: 5px;
             transition: 200ms;
             background-image: url("../pages_data/map/sea_day.png");
             background-repeat: no-repeat;
@@ -676,7 +680,9 @@ body{
             background-image: url("../pages_data/map/player.png");
             background-repeat: no-repeat;
             background-size: cover;
-            margin: 5px 0 0 5px;
+            margin: 5px 0 0 calc(50% - 325px);
+            pointer-events: none;
+            background-color: rgba(127, 255, 0, 0.5);
         }
     .map-grid-action{
         display: flex;

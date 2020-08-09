@@ -61,6 +61,7 @@ function append_main(res){
     $elem.find(".main-name").text(player_name);
     $elem.find(".main-lv").text(player_level);
     $elem.find(".main-exp").text(player_exp);
+    $elem.css("background-image", "url('pages_data/illu/"+res['secretary']+".png')")
 
     exp_per = String((res["exp"]/res["expmax"]*100).toFixed(1))+"%";
 
@@ -217,11 +218,58 @@ function append_gridmap(res){
     let $elem = $("#template-block .map-gridmap").clone(true, true);
     $elem.find(".game-block-title-name").text(res["areaid"]+"-"+res["mapid"]+" "+res["mapname"])
     let canvas = $elem.find(".map-grid-map")[0]
+    init_game_gridmap(canvas, res["gridmsg"])
     draw_gridmap(canvas, res["gridmsg"])
-    init_game_gridmap(res["gridmsg"])
     $elem.find(".map-grid-player").css("left", game_GridStartPos[0] + game_playerPos[0] * 50)
     $elem.find(".map-grid-player").css("top", game_GridStartPos[1] + game_playerPos[1] * 50)
     return $elem
+}
+
+function player_move(orderlist){
+    if(orderlist.length == 0){
+        return;
+    }
+
+    var dir = orderlist[0];
+    orderlist.shift();
+    var $player = $(game_PlayerElem);
+    if(dir == 0){
+        var moveY = -50;
+        var moveX = 0;
+    }
+    else if(dir == 1){
+        var moveY = 0;
+        var moveX = 50;
+    }
+    else if(dir == 2){
+        var moveY = 50;
+        var moveX = 0;
+    }
+    else if(dir == 3){
+        var moveY = 0;
+        var moveX = -50;
+    }
+    let origin = $player.position();
+    let originX = origin.left;
+    let originY = origin.top;
+    if(orderlist.length == 0){
+        $player.animate({
+            left: String(originX + moveX)+"px",
+            top: String(originY + moveY)+"px",
+        }, 500)
+        setTimeout(()=>{
+            game_MovingFlag = false;
+        }, 500)
+    }
+    else{
+        $player.animate({
+            left: String(originX + moveX)+"px",
+            top: String(originY + moveY)+"px",
+        }, 500);
+        setTimeout(()=>{
+            player_move(orderlist);
+        }, 500)
+    }
 }
 
 function get_add_block(res){

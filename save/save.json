@@ -5,7 +5,8 @@
         "exp":0,
         "money":5000,
         "diamond":4000,
-        "oil":5000
+        "oil":5000,
+        "secretary":"huayue"
     },
     "item":{
         "normal":[
