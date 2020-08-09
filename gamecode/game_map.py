@@ -31,7 +31,9 @@ class GameMap:
         for i in range(newEnemyNum):
             newP = self.enemyAppearControl["pos"].pop()
             self.enemyPosList.append(newP)
-            msg["enemy"].append({"pos": newP})
+            enemy = random.choice(range(len(self.enemyGroups)))
+            msg["enemy"].append(
+                {"pos": newP, "enemyid": enemy, "enemyintensity": self.enemyGroups[enemy]["battleitensity"]})
 
         # return msg
         msg["mapsize"] = self.mapSize

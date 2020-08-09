@@ -218,6 +218,9 @@ function append_gridmap(res){
     $elem.find(".game-block-title-name").text(res["areaid"]+"-"+res["mapid"]+" "+res["mapname"])
     let canvas = $elem.find(".map-grid-map")[0]
     draw_gridmap(canvas, res["gridmsg"])
+    init_game_gridmap(res["gridmsg"])
+    $elem.find(".map-grid-player").css("left", game_GridStartPos[0] + game_playerPos[0] * 50)
+    $elem.find(".map-grid-player").css("top", game_GridStartPos[1] + game_playerPos[1] * 50)
     return $elem
 }
 
