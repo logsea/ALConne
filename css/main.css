@@ -42,7 +42,7 @@ body{
 }
 
 #template-block{
-    display: none;
+    /* display: none; */
 }
 
 #gametitle{
@@ -707,4 +707,120 @@ body{
                 color: orange;
                 -webkit-text-stroke: 1px black;
                 margin-right: 50px;
+            }
+
+.battle-scene{
+    height: 600px;
+}
+    .battle-container{
+        width: 680px;
+        margin: 5px 0;
+        margin-left: calc(50% - 325px);
+    }
+    .battle-container .battle-canvas{
+        box-shadow: 0 0 4px rgba(0,0,0,0.5);
+        transition: 200ms;
+    }
+        .battle-container .battle-canvas:hover{
+            box-shadow: 0 0 6px #ff3985;
+        }
+    .battle-order-container{
+        margin: 5px;
+        display: flex;
+        flex-direction: row;
+    }
+        .battle-character-order-list{
+            width: 450px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: flex-start;
+        }
+            .battle-character-order-block{
+                width: 200px;
+                height: 50px;
+                margin-right: 10px;
+                display: flex;
+                flex-direction: row;
+                background-color: transparent;
+                transition: 200ms;
+                padding: 5px;
+                border-radius: 5px;
+                overflow: hidden;
+            }
+                .battle-character-order-block:hover{
+                    background-color: rgba(93, 177, 255, 0.5);
+                }
+                .battle-character-image{
+                    height: 50px;
+                    width: 50px;
+                    margin-right: 5px;
+                    background-image: url("../pages_data/illu_head/yukikaze.png");
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    border-radius: 5px;
+                    overflow: hidden;
+                    border: solid 2px gold;
+                }
+                .battle-character-state{
+
+                }
+                    .battle-character-state .battle-character-name{
+                        font-family: priconne;
+                        font-size: 16px;
+                        height: 20px;
+                    }
+                    .battle-character-state .battle-character-hp{
+                        height: 11px;
+                        width: 140px;
+                        margin: 2px 0;
+                        background-color: mediumseagreen;
+                        border: solid 2px seagreen;
+                        border-radius: 5px;
+                    }
+                    .battle-character-state .battle-character-tp{
+                        height: 11px;
+                        width: 140px;
+                        background-color: cornflowerblue;
+                        border: solid 2px royalblue;
+                        border-radius: 5px;
+                    }
+        .battle-overall-order-list{
+            border-left: solid 2px gray;
+            height: 180px;
+            width: 200px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding-left: 20px;
+            align-content: flex-start;
+        }
+            .battle-overall-order-list .order-item{
+                width: 40px;
+                height: 40px;
+                background-repeat: no-repeat;
+                background-size: cover;
+                margin-right: 5px;
+                margin-bottom: 20px;
+                border-radius: 5px;
+                border: solid 2px gray;
+                transition: 200ms;
+            }
+                .battle-overall-order-list .order-item:hover{
+                    background-color: #ff3985;
+                }
+            .battle-overall-order-list .order-auto{
+                background-image: url("../pages_data/battle/auto.png");
+            }
+            .battle-overall-order-list .order-accelerate{
+                background-image: url("../pages_data/battle/start.png");
+            }
+                .battle-overall-order-list .order-accelerate.accelerate{
+                    background-image: url("../pages_data/battle/dt.png");
+                }
+            .battle-overall-order-list .order-pause{
+                background-image: url("../pages_data/battle/pause.png");
+            }
+            .battle-overall-order-list .order-quit{
+                background-image: url("../pages_data/battle/quit.png");
             }

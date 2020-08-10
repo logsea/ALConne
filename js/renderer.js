@@ -1,4 +1,5 @@
 const thrift = require('thrift');
+const {ipcRenderer} = require('electron');
 let userService = require('../MsgPass')
 let npType = require('../mp_types')
 let thriftConnection = thrift.createConnection('127.0.0.1', 4242, {
@@ -55,6 +56,9 @@ $(document).ready(()=>{
         $("#gametitle").addClass("height-no-active")
         gamestart()
     })
-    link_client_pagemain = link_client
-    link_client_noblock_pagemain = link_client_noblock
+    $("#gameend").click(()=>{
+        ipcRenderer.send("close-app");
+    })
+    link_client_pagemain = link_client;
+    link_client_noblock_pagemain = link_client_noblock;
 })

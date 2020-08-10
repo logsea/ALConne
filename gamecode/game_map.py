@@ -1,5 +1,6 @@
 import random
 import copy
+from character import BattleChar
 
 class GameMap:
     def __init__(self):

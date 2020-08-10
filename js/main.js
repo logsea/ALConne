@@ -256,19 +256,19 @@ function player_move(orderlist){
         $player.animate({
             left: String(originX + moveX)+"px",
             top: String(originY + moveY)+"px",
-        }, 500)
+        }, 100)
         setTimeout(()=>{
             game_MovingFlag = false;
-        }, 500)
+        }, 100)
     }
     else{
         $player.animate({
             left: String(originX + moveX)+"px",
             top: String(originY + moveY)+"px",
-        }, 500);
+        }, 100);
         setTimeout(()=>{
             player_move(orderlist);
-        }, 500)
+        }, 100)
     }
 }
 

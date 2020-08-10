@@ -71,7 +71,7 @@ Start Main Process
 function createWindow() {
     let win = new BrowserWindow({
         width: 800,
-        height: 600,
+        height: 800,
         resizable:false,
         webPreferences:{
             nodeIntegration: true,
@@ -95,6 +95,11 @@ app.whenReady().then(() => {
 
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit()
+})
+
+electron.ipcMain.on('close-app', (event, arg)=>{
+    console.log("app quid get");
+    app.quit();
 })
 
 // console.log(app.allowRendererProcessReuse);

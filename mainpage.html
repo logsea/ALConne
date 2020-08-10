@@ -25,6 +25,8 @@
       <img src="pages_data/logo.png"alt="LOGO IMG">
       <div class="game_start_btn_group">
         <div class="mainbutton" id="gamestart">开始游戏</div>
+        <div class="mainbutton" id="gameload">读取存档</div>
+        <div class="mainbutton" id="gameconfig">游戏设置</div>
         <div class="mainbutton" id="gameend">退出游戏</div>
         </div>
       </div>
@@ -183,6 +185,53 @@
           <div class="map-grid-action-item map-grid-retreat">舰队撤退</div>
           <div class="map-grid-action-item map-grid-endaction">结束关卡</div>
           <div class="map-grid-dbgmsg"></div>
+          </div>
+        </div>
+      <div class="game-block battle-scene appear">
+        <div class="battle-container">
+          <canvas class="battle-canvas" height="400px" width="650px"></canvas>
+          </div>
+        <div class="battle-order-container">
+          <div class="battle-character-order-list">
+            <div class="battle-character-order-block">
+              <div class="battle-character-image"></div>
+              <div class="battle-character-state">
+                <div class="battle-character-name">雪风</div>
+                <div class="battle-character-hp"></div>
+                <div class="battle-character-tp"></div>
+                </div>
+              </div>
+            <div class="battle-character-order-block">
+              <div class="battle-character-image"></div>
+              <div class="battle-character-state">
+                <div class="battle-character-name">秋月</div>
+                <div class="battle-character-hp"></div>
+                <div class="battle-character-tp"></div>
+                </div>
+              </div>
+            <div class="battle-character-order-block">
+              <div class="battle-character-image"></div>
+              <div class="battle-character-state">
+                <div class="battle-character-name">北风</div>
+                <div class="battle-character-hp"></div>
+                <div class="battle-character-tp"></div>
+                </div>
+              </div>
+            <div class="battle-character-order-block">
+              <div class="battle-character-image"></div>
+              <div class="battle-character-state">
+                <div class="battle-character-name">春云</div>
+                <div class="battle-character-hp"></div>
+                <div class="battle-character-tp"></div>
+                </div>
+              </div>
+            </div>
+          <div class="battle-overall-order-list">
+            <div class="order-item order-auto"></div>
+            <div class="order-item order-accelerate"></div>
+            <div class="order-item order-pause"></div>
+            <div class="order-item order-quit"></div>
+            </div>
           </div>
         </div>
       </div>

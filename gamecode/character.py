@@ -168,6 +168,36 @@ class BattleChar():
         self.tpreload = data.tpreload
         self.repair = data.repair
         self.fastrepair = data.fastrepair
+    
+    def get_msg_as_json(self):
+        msg = {}
+        msg["id"]           = data.id
+        msg["name"]         = data.name
+        msg["type"]         = data.type
+        msg["lv"]           = data.lv
+        msg["hpmax"]        = data.hpmax
+        msg["hp"]           = data.hp
+        msg["tp"]           = data.tp
+        msg["tpmax"]        = data.tpmax
+        msg["ap"]           = data.ap
+        msg["apmax"]        = data.apmax
+        msg["pos"]          = data.pos
+        msg["firepower"]    = data.firepower
+        msg["torpedo"]      = data.torpedo
+        msg["planebomb"]    = data.planebomb
+        msg["planetorp"]    = data.planetorp
+        msg["planeaa"]      = data.planeaa
+        msg["aim"]          = data.aim
+        msg["torpflex"]     = data.torpflex
+        msg["aa"]           = data.aa
+        msg["armor"]        = data.armor
+        msg["antitorp"]     = data.antitorp
+        msg["antiair"]      = data.antiair
+        msg["reload"]       = data.reload
+        msg["tpreload"]     = data.antitorp
+        msg["repair"]       = data.antiair
+        msg["fastrepair"]   = data.reload
+        return msg
 
     def timeStemp(self, time = 0):
         if(time == 0):
