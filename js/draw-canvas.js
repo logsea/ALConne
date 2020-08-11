@@ -36,3 +36,24 @@ function draw_gridmap(canvas, gridmsg){
         img.src = url
     }
 }
+
+function draw_battle(){
+    const context = game_BattleCanvas.getContext('2d');
+    context.clearRect(0, 0, game_BattleCanvas.width, game_BattleCanvas.height);
+    const width = game_BattleCanvas.width;
+    const height = game_BattleCanvas.height;
+    const xUnit = ((width / 2) - 50) / 1000;
+    for(let char of game_BattlePlayerChar){
+        let imgWidth = char.image.naturalWidth;
+        let imgHeight = char.image.naturalHeight;
+        let needHeight = imgHeight * (75 / imgWidth)
+        context.drawImage(char.image, 
+            width / 2 - xUnit * char.pos - 50, height - needHeight - 10, 
+            75, needHeight);
+    }
+    context.textAlign = "end";
+    context.font = "20px resource";
+    context.fillText(
+        "Tick:"+String((game_TimeTick/60).toFixed(2))+"s("+String(game_TimeTick)+"/"+String(game_MaxTick)+")", 
+        width, 30);
+}

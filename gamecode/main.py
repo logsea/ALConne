@@ -8,13 +8,18 @@ import character
 import chapter
 import player as playerclass
 from game_map import GameMap
+
+import game_battle
 from game_battle import GameBattle
 
 db = database.DataBase()
 character.db = db
 playerclass.db = db
 chapter.db = db
+game_battle.db = db
+
 player = playerclass.Player()
+chapter.player = player
 
 gameMap = None
 gameBattle = None
@@ -50,8 +55,12 @@ def ret_main_msg(cate):
     elif(cate == "chapter" or cate == "map"):
         retType, retMsg = chapter.ret_msg(cate, cateId)
     elif(cate == "gridmapstart"):
-        retType, retMsg = chapter.ret_msg_and_setup_gridmap(cate, cateId, gameMap)
+        new_game_grid()
+        retType, retMsg = chapter.ret_msg_and_setup_gridmap(cate, cateId, gameMap, player.fleet)
     elif(cate == "battlestart"):
+        new_game_battle()
+        x, y = cateId.split('-', 1)
+        cate = [int(x), int(y)] # x, y
         retType, retMsg = chapter.ret_msg_and_setup_battle(gameMap, cate, gameBattle)
     else:
         retType = None

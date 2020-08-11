@@ -13,3 +13,4 @@ dist
 .thrift
 .gamecode/save
 *.pyc
+save/save.json

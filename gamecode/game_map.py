@@ -22,6 +22,8 @@ class GameMap:
         self.bossAppearControl = _msg["grid"]["boss"]
         self.playerAppearControl = _msg["grid"]["player"]
         self.enemyGroups = _msg["enemy"]
+
+        self.playerfleet = None
     
     def get_map_msg_newmap(self):
         msg = {}
@@ -31,8 +33,8 @@ class GameMap:
         random.shuffle(self.enemyAppearControl["pos"])
         for i in range(newEnemyNum):
             newP = self.enemyAppearControl["pos"].pop()
-            self.enemyPosList.append(newP)
             enemy = random.choice(range(len(self.enemyGroups)))
+            self.enemyPosList.append({"pos":newP, "enemy": enemy})
             msg["enemy"].append(
                 {"pos": newP, "enemyid": enemy, "enemyintensity": self.enemyGroups[enemy]["battleitensity"]})
 

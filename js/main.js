@@ -222,6 +222,10 @@ function append_gridmap(res){
     draw_gridmap(canvas, res["gridmsg"])
     $elem.find(".map-grid-player").css("left", game_GridStartPos[0] + game_playerPos[0] * 50)
     $elem.find(".map-grid-player").css("top", game_GridStartPos[1] + game_playerPos[1] * 50)
+
+    $elem.find(".map-grid-battle").click(()=>{
+        get_battle_start()
+    })
     return $elem
 }
 
@@ -256,20 +260,32 @@ function player_move(orderlist){
         $player.animate({
             left: String(originX + moveX)+"px",
             top: String(originY + moveY)+"px",
-        }, 100)
+        }, 250)
         setTimeout(()=>{
             game_MovingFlag = false;
-        }, 100)
+        }, 250)
     }
     else{
         $player.animate({
             left: String(originX + moveX)+"px",
             top: String(originY + moveY)+"px",
-        }, 100);
+        }, 250);
         setTimeout(()=>{
             player_move(orderlist);
-        }, 100)
+        }, 250)
     }
+}
+
+function append_battlescene(res){
+    let $elem = $("#template-block .battle-scene").clone(true, true);
+    let canvas = $elem.find(".battle-canvas")[0]
+    for(let char of res.player.playerchar){
+        $char = $("#template-block .battle-character-order-block").clone()
+        $char.find(".battle-character-name").text(char.name)
+        $elem.find(".battle-character-order-list").append($char)
+    }
+    init_game_battle(canvas, res);
+    return $elem
 }
 
 function get_add_block(res){
@@ -294,6 +310,9 @@ function get_add_block(res){
     }
     else if(res.type == "gridmapstart"){
         $newblock = append_gridmap(res.msg);
+    }
+    else if(res.type == "battlestart"){
+        $newblock = append_battlescene(res.msg);
     }
     else{
         return undefined;

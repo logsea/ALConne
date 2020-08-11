@@ -1,0 +1,148 @@
+{
+    "player":{
+        "name":"logsea",
+        "level":1,
+        "exp":0,
+        "money":5000,
+        "diamond":4000,
+        "oil":5000,
+        "secretary":"huayue"
+    },
+    "item":{
+        "normal":[
+            {"id":1, "number":1000},
+            {"id":2, "number":200},
+            {"id":3, "number":200},
+            {"id":4, "number":50},
+            {"id":11, "number":1000},
+            {"id":12, "number":1000},
+            {"id":13, "number":200},
+            {"id":14, "number":1000},
+            {"id":15, "number":2000}
+        ],
+        "equip":[
+            {"id":1000001, "number":5},
+            {"id":1000002, "number":5},
+            {"id":1000003, "number":5},
+            {"id":2000001, "number":5},
+            {"id":2000002, "number":5},
+            {"id":2000003, "number":5},
+            {"id":1010001, "number":1}
+        ],
+        "blueprint":[
+
+        ],
+        "mentalunit":[
+            
+        ]
+    },
+    "char":[
+        {
+            "id":1,
+            "level":1,
+            "exp":40,
+            "star":1,
+            "rarity":1,
+            "refine":0,
+            "equip":[
+                0, 0, 0, 0, 0, 0
+            ],
+            "slotenhence":[
+                0, 0, 0, 0, 0, 0
+            ],
+            "skill":[
+                1, 0, 0, 0, 0
+            ],
+            "unique_equip":[
+                0, 0, 0
+            ],
+            "unique_equip_detail":[
+                {
+                    "level":0,
+                    "refine":0,
+                    "enhance":0
+                },
+                {
+                    "level":0,
+                    "refine":0,
+                    "enhance":0
+                },
+                {
+                    "level":0,
+                    "refine":0,
+                    "enhance":0
+                }
+            ]
+        },
+        {
+            "id":2,
+            "level":1,
+            "exp":0,
+            "star":1,
+            "rarity":1,
+            "refine":0,
+            "equip":[
+
+            ],
+            "slotenhence":[
+                
+            ],
+            "skill":[
+                1, 0, 0, 0, 0
+            ],
+            "unique_equip":[
+                0, 0, 0
+            ]
+        },
+        {
+            "id":3,
+            "level":1,
+            "exp":0,
+            "star":1,
+            "rarity":1,
+            "refine":0,
+            "equip":[
+
+            ],
+            "slotenhence":[
+                
+            ],
+            "skill":[
+                1, 0, 0, 0, 0
+            ],
+            "unique_equip":[
+                0, 0, 0
+            ]
+        },
+        {
+            "id":4,
+            "level":1,
+            "exp":0,
+            "star":1,
+            "rarity":1,
+            "refine":0,
+            "equip":[
+
+            ],
+            "slotenhence":[
+                
+            ],
+            "skill":[
+                1, 0, 0, 0, 0
+            ],
+            "unique_equip":[
+                0, 0, 0
+            ]
+        }
+    ],
+    "fleet":[
+        {
+            "id":1,
+            "name":"第一舰队",
+            "char":[1, 2, 3, 4, 0, 0]
+        }
+    ],
+    "DLC":[
+
+    ]
+}

@@ -37,9 +37,9 @@
                     "battleitensity": 1,
                     "battleunit":[
                         [
-                            {"id":100001,"level":1},
-                            {"id":100001,"level":1},
-                            {"id":100001,"level":1}]
+                            {"id":100001,"level":1,"pos": 100},
+                            {"id":100001,"level":1,"pos": 300},
+                            {"id":100001,"level":1,"pos": 500}]
                     ]
                 }
             ]

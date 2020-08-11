@@ -52,6 +52,13 @@ function get_mapgrid_initial(){
     link_client_pagemain(send)
 }
 
+function get_battle_start(){
+    send = {
+        'type': 'main-battlestart-'+String(game_playerPos[0])+'-'+String(game_playerPos[1])
+    }
+    link_client_pagemain(send)
+}
+
 function get_item_image_url(itemid){
     if(itemid == "exp") return "./pages_data/item/exp.png"
     if(itemid == "money") return "./pages_data/item/money.png"

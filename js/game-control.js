@@ -38,6 +38,7 @@ function check_player_reachable(pos){
         }
         q.shift()
     }
+    return [false, undefined]
 }
 
 gridPrintToken = ["X", " ", "P", "E", "B"];
@@ -88,7 +89,6 @@ function init_game_gridmap(canvas, gridmsg){
     game_GridmapGrid[game_playerPos[0]][game_playerPos[1]] = 2;
     game_MapSize = { x: gridmsg["mapsize"][0], y:gridmsg["mapsize"][1]}
     game_PlayerElem = $(canvas).siblings(".map-grid-player")[0]
-    game_TimeTick = 0
     for(let enemy of gridmsg["enemy"]){
         game_GridmapGrid[enemy.pos[0]][enemy.pos[1]] = 3;
     }
@@ -125,6 +125,7 @@ function init_game_gridmap(canvas, gridmsg){
                 game_GridmapGrid[gridX][gridY] = 6
             }
             game_playerPos = [gridX, gridY];
+            // TODO: change from offset to fixed position
             player_move(reachMsg[1]);
         }
     })
@@ -132,9 +133,42 @@ function init_game_gridmap(canvas, gridmsg){
 }
 
 function game_frame_main(){
-
+    if(game_TimeTick <= game_MaxTick){
+        // battle continue
+        if(game_BattlePlay == false){
+            return;
+        }
+        game_TimeTick += 1;
+        draw_battle();
+        window.requestAnimationFrame(game_frame_main)
+    }
+    // battle end
 }
 
 function init_game_battle(canvas, battlemsg){
-    
+    game_TimeTick = 0
+    game_MaxTick = 3600
+    game_BattlePlay = true
+    game_BattleCanvas = canvas;
+    game_BattlePlayerChar = []
+    game_BattleEnemyChar = []
+    let QcharImagePath = "pages_data/charQ/"
+    for(let char of battlemsg.player.playerchar){
+        let charDrawMsg = {}
+        charDrawMsg.pos = char.pos
+        charDrawMsg.imageFile = "yukikaze.png"
+        charDrawMsg.image = new Image()
+        charDrawMsg.image.src = QcharImagePath + charDrawMsg.imageFile
+        game_BattlePlayerChar.push(charDrawMsg)
+    }
+    for(let char of battlemsg.enemy.enemy){
+        let charDrawMsg = {}
+        charDrawMsg.pos = char.pos
+        charDrawMsg.imageFile = "yukikaze.png"
+        charDrawMsg.image = new Image()
+        charDrawMsg.image.src = QcharImagePath + charDrawMsg.imageFile
+        game_BattleEnemyChar.push(charDrawMsg)
+    }
+
+    window.requestAnimationFrame(game_frame_main)
 }

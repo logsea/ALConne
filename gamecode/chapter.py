@@ -1,6 +1,7 @@
 import numlimit as lmt
 
 db = None
+player = None
 
 def area_msg(area_id):
     msg = {}
@@ -54,7 +55,7 @@ def map_msg(area_id, map_id):
     msg["mapdrop"] = itemlist
     return msg
 
-def mapgrid_msg(area_id, map_id, gameMap):
+def mapgrid_msg(area_id, map_id, gameMap, playerFleet):
     msg = {}
     for i in db.area[int(area_id)]["map"]:
         if(int(i["mapid"]) == int(map_id)):
@@ -65,18 +66,27 @@ def mapgrid_msg(area_id, map_id, gameMap):
     msg["mapid"] = needMap["mapid"]
     gameMap.set_map_msg(needMap)
     msg["gridmsg"] = gameMap.get_map_msg_newmap()
+    gameMap.playerFleet = playerFleet
     return msg
 
 def mapgrid_next_msg():
     msg = {}
     return msg
 
-def init_battle_msg(gameMap, playerFleet, enemyFleet, gameBattle):
+def init_battle_msg(gameMap, enemyPos, gameBattle):
     msg = {}
-    gameBattle.set_battle_msg(playerFleet, enemyFleet, db)
-    msg["player"] = gameBattle.get_player_fleep_msg(playerFleet)
+    enemyFleet = None
+    for e in gameMap.enemyPosList:
+        # print(enemyPos, e["pos"])
+        # if(e["pos"][0] == enemyPos[0] and e["pos"][1] == enemyPos[1]):
+        if(e["pos"] == enemyPos):
+            # print(True)
+            enemyFleet = gameMap.enemyGroups[e["enemy"]]
+    # 0 present Self Fleet No.0, the default fleet, need to modify
+    gameBattle.set_battle_msg(gameMap.playerFleet[0], enemyFleet, db)
+    msg["player"] = gameBattle.get_player_fleet_msg(player, 0)
     msg["enemy"] = gameBattle.get_next_group_msg(db)
-    pass
+    return msg
 
 def ret_msg(cate, cate_id = None):
     if(cate == "chapter"):
@@ -99,11 +109,11 @@ def ret_msg(cate, cate_id = None):
     elif(cate == "battlescene"):
         pass
 
-def ret_msg_and_setup_gridmap(cate, cate_id, gameMap):
+def ret_msg_and_setup_gridmap(cate, cate_id, gameMap, playerFleet):
     areaid, mapid = cate_id.split("-")
-    msg = mapgrid_msg(areaid, mapid)
+    msg = mapgrid_msg(areaid, mapid, gameMap, playerFleet)
     return "gridmapstart", msg
 
-def ret_msg_and_setup_battle(gameMap, playerFleet, enemyFleet, gameBattle):
-    msg = init_battle_msg(gameMap, playerFleet, enemyFleet, gameBattle)
+def ret_msg_and_setup_battle(gameMap, enemyPos, gameBattle):
+    msg = init_battle_msg(gameMap, enemyPos, gameBattle)
     return "battlestart", msg
