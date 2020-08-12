@@ -777,16 +777,20 @@ body{
                         height: 11px;
                         width: 140px;
                         margin: 2px 0;
-                        background-color: mediumseagreen;
+                        /* background-color: mediumseagreen; */
+                        background: linear-gradient(to right,mediumseagreen,mediumseagreen 100%, transparent 100%, transparent);
                         border: solid 2px seagreen;
                         border-radius: 5px;
+                        font-size: 12px;
                     }
                     .battle-character-state .battle-character-tp{
                         height: 11px;
                         width: 140px;
-                        background-color: cornflowerblue;
+                        /* background-color: cornflowerblue; */
+                        background: linear-gradient(to right,cornflowerblue,cornflowerblue 0%, transparent 0%, transparent);
                         border: solid 2px royalblue;
                         border-radius: 5px;
+                        font-size: 12px;
                     }
         .battle-overall-order-list{
             border-left: solid 2px gray;
@@ -812,6 +816,9 @@ body{
                 .battle-overall-order-list .order-item:hover{
                     background-color: #ff3985;
                 }
+            .battle-overall-order-list .order-item.active{
+                background-color: #ff398580;
+            }
             .battle-overall-order-list .order-auto{
                 background-image: url("../pages_data/battle/auto.png");
             }

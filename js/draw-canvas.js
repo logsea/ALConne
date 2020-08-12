@@ -44,16 +44,20 @@ function draw_battle(){
     const height = game_BattleCanvas.height;
     const xUnit = ((width / 2) - 50) / 1000;
     for(let char of game_BattlePlayerChar){
-        let imgWidth = char.image.naturalWidth;
-        let imgHeight = char.image.naturalHeight;
-        let needHeight = imgHeight * (75 / imgWidth)
-        context.drawImage(char.image, 
-            width / 2 - xUnit * char.pos - 50, height - needHeight - 10, 
-            75, needHeight);
+        char.draw(context, width, height, xUnit);
+    }
+    for(let char of game_BattleEnemyChar){
+        char.draw(context, width, height, xUnit);
     }
     context.textAlign = "end";
     context.font = "20px resource";
     context.fillText(
         "Tick:"+String((game_TimeTick/60).toFixed(2))+"s("+String(game_TimeTick)+"/"+String(game_MaxTick)+")", 
         width, 30);
+    context.textAlign = "center";
+    context.font = "20px priconne";
+    for(let dmg of game_damageNumberList){
+        context.fillText(
+            String(dmg.number), dmg.pos[0], dmg.pos[1]);
+    }
 }

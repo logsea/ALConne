@@ -98,7 +98,7 @@ app.on('window-all-closed', function () {
 })
 
 electron.ipcMain.on('close-app', (event, arg)=>{
-    console.log("app quid get");
+    console.log("app quit get");
     app.quit();
 })
 

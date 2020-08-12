@@ -278,13 +278,19 @@ function player_move(orderlist){
 
 function append_battlescene(res){
     let $elem = $("#template-block .battle-scene").clone(true, true);
-    let canvas = $elem.find(".battle-canvas")[0]
-    for(let char of res.player.playerchar){
-        $char = $("#template-block .battle-character-order-block").clone()
-        $char.find(".battle-character-name").text(char.name)
-        $elem.find(".battle-character-order-list").append($char)
-    }
+    let canvas = $elem.find(".battle-canvas")[0];
     init_game_battle(canvas, res);
+    for(let char of res.player.playerchar){
+        $char = $("#template-block .battle-character-order-block").clone();
+        $char.find(".battle-character-name").text(char.name);
+        $elem.find(".battle-character-order-list").append($char);
+        link_char_and_contrle($char, char);
+    }
+    $elem.find(".order-pause").click(event=>{
+        play_state = pause_game();
+        if(play_state == true) event.target.removeClass("active");
+        else event.target.addClass("active");
+    })
     return $elem
 }
 

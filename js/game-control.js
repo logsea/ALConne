@@ -133,42 +133,205 @@ function init_game_gridmap(canvas, gridmsg){
 }
 
 function game_frame_main(){
-    if(game_TimeTick <= game_MaxTick){
+    if(game_TimeTick < game_MaxTick){
         // battle continue
         if(game_BattlePlay == false){
+            window.requestAnimationFrame(game_frame_main);
             return;
         }
         game_TimeTick += 1;
+        for(let char of game_BattlePlayerChar){
+            char.update();
+        }
+        for(let char of game_BattleEnemyChar){
+            char.update();
+        }
+        for(let dmg of game_damageNumberList){
+            dmg.pos[1] -= 1;
+            dmg.tick += 1;
+        }
+        game_BattleEnemyChar = game_BattleEnemyChar.filter(obj=>{
+            return !(obj.dead == true && obj.tick > 60);
+        })
+        game_damageNumberList = game_damageNumberList.filter(function( obj ) {
+            return obj.tick < 60;
+        });
         draw_battle();
-        window.requestAnimationFrame(game_frame_main)
+        window.requestAnimationFrame(game_frame_main);
     }
     // battle end
 }
 
-function init_game_battle(canvas, battlemsg){
-    game_TimeTick = 0
-    game_MaxTick = 3600
-    game_BattlePlay = true
-    game_BattleCanvas = canvas;
-    game_BattlePlayerChar = []
-    game_BattleEnemyChar = []
-    let QcharImagePath = "pages_data/charQ/"
-    for(let char of battlemsg.player.playerchar){
-        let charDrawMsg = {}
-        charDrawMsg.pos = char.pos
-        charDrawMsg.imageFile = "yukikaze.png"
-        charDrawMsg.image = new Image()
-        charDrawMsg.image.src = QcharImagePath + charDrawMsg.imageFile
-        game_BattlePlayerChar.push(charDrawMsg)
+class GameChar{
+    constructor(char, imageFile){
+        this.char = char;
+        this.imageFile = imageFile;
+        this.image = new Image();
+        this.image.src = imageFile;
+        this.tick = 0;
+        this.attackCD = 2000;
+        this.attacking = false;
+        this.dead = false;
+        this.SpiritPosX = 0;
+        this.SpiritPosY = 0;
     }
+    draw(context, width, height, xUnit){
+        let imgWidth = this.image.naturalWidth;
+        let imgHeight = this.image.naturalHeight;
+        let needHeight = imgHeight * (75 / imgWidth);
+        let posYC = height - needHeight - 10 + 5 * Math.sin(this.tick / 6 * Math.PI / 12);
+        this.SpiritPosY = posYC;
+        if(this.dead == true){
+            if(this.tick < 15) var atkPosYOff = -this.tick;
+            else var atkPosYOff = (this.tick - 15) * 3;
+        }
+        if(this.attacking == true){
+            if(this.tick < 30) var atkPosXOff = this.tick;
+            else var atkPosXOff = 60 - this.tick;
+        }
+        if(this.alignment == "self"){
+            var posX = width / 2 - xUnit * this.char.pos - 50;
+            if(atkPosXOff != undefined){
+                posX += atkPosXOff;
+            }
+            if(atkPosYOff != undefined){
+                posYC += atkPosYOff;
+            }
+            this.SpiritPosX = posX;
+            context.drawImage(this.image, posX, posYC, 75, needHeight);
+        }
+        if(this.alignment == "enemy"){
+            var posX = width / 2 + xUnit * this.char.pos
+            if(atkPosXOff != undefined){
+                posX += atkPosXOff;
+            }
+            if(atkPosYOff != undefined){
+                posYC += atkPosYOff;
+            }
+            this.SpiritPosX = posX;
+            context.drawImage(this.image, posX, posYC, 75, needHeight);
+        }
+
+        let hpPercent = this.char.hp / this.char.hpmax;
+        context.strokeRect(posX, height - 110, 75, 10);
+        if(hpPercent > 0.75) context.fillStyle = "mediumseagreen";
+        else if(hpPercent > 0.25) context.fillStyle = "yellow";
+        else context.fillStyle = "red";
+        context.fillRect(posX+1, height - 109, 73*hpPercent, 8);
+        context.fillStyle = "black";
+    }
+    update(){
+        this.tick += 1;
+        if(this.attacking == false) this.attackCD -= this.char.reload;
+        if(this.alignment == "self"){
+            if(this.hpChanged == true){
+                let exp_per = String((this.char.hp/this.char.hpmax*100).toFixed(1))+"%";
+                this.control.find(".battle-character-hp").css("background", 
+                    "linear-gradient(to right,mediumseagreen,mediumseagreen "+ 
+                    exp_per + ", transparent " + exp_per + ", transparent)");
+                this.control.find(".battle-character-hp").text(String(this.char.hp)+"/"+String(this.char.hpmax));
+                this.hpChanged = false;
+            }
+            if(this.tpChanged == true){
+                let exp_per = String((this.char.tp/this.char.tpmax*100).toFixed(1))+"%";
+                this.control.find(".battle-character-tp").css("background", 
+                    "linear-gradient(to right,cornflowerblue,cornflowerblue "+ 
+                    exp_per + ", transparent " + exp_per + ", transparent)");
+                this.control.find(".battle-character-tp").text(String(this.char.tp)+"/"+String(this.char.tpmax));
+                this.tpChanged = false;
+            }
+        }
+        if(this.char.hp > this.char.hpmax) this.char.hp = this.char.hpmax;
+        if(this.char.tp > this.char.tpmax) this.char.tp = this.char.tpmax;
+
+        if(this.attackCD <= 0){
+            this.attacking = true;
+            this.attackCD = 2000;
+            this.tick = 0;
+            // todo: now attack frame is frame 0, maybe change to bind animation after
+            this.attack();
+        }
+        if(this.attacking == true){
+            if(this.tick >= 60){
+                this.attacking = false;
+                this.tick = 0;
+            }
+        }
+    }
+    attack(){
+        let attack = {};
+        let closest = 1000;
+        attack.baseDmg = this.char.firepower;
+        let AttackAimList = game_BattlePlayerChar
+        if(this.alignment == "self") AttackAimList = game_BattleEnemyChar
+        for(let ch of AttackAimList){
+            if(ch.dead == false && closest > ch.char.pos){
+                closest = ch.char.pos;
+                var aim = ch;
+            }
+        }
+        if(aim == undefined) return;
+        aim.get_attack(attack);
+        this.char.tp += 250;
+        this.tpChanged = true;
+    }
+    get_attack(attack){
+        let getDmg = attack.baseDmg
+        this.char.hp -= getDmg;
+        if(this.char.hp <= 0){
+            this.char.hp = 0;
+            this.dead = true;
+            this.tick = 0;
+        }
+        this.hpChanged = true;
+        let dropHpRate = getDmg/this.char.hpmax;
+        let getTp = Math.floor(dropHpRate * 1000 * 1.5);
+        this.char.tp += getTp;
+        this.tpChanged = true;
+
+        game_damageNumberList.push(
+            {"number": getDmg, "tick": 0, "pos": [this.SpiritPosX, this.SpiritPosY]});
+    }
+}
+
+function link_char_and_contrle($charctrl, char){
+    imageFile = "yukikaze.png";
+    let charDrawMsg = new GameChar(char, game_QcharImagePath + imageFile);
+    charDrawMsg.alignment = "self";
+    charDrawMsg.control = $charctrl;
+    charDrawMsg.hpChanged = false;
+    charDrawMsg.tpChanged = false;
+    game_BattlePlayerChar.push(charDrawMsg);
+    $charctrl.find(".battle-character-hp").text(String(char.hp)+"/"+String(char.hpmax));
+}
+
+function init_game_battle(canvas, battlemsg){
+    game_TimeTick = 0;
+    game_MaxTick = 3600;
+    game_BattlePlay = true;
+    game_BattleCanvas = canvas;
+    game_BattlePlayerChar = [];
+    game_BattleEnemyChar = [];
+    game_damageNumberList = [];
+    game_QcharImagePath = "pages_data/charQ/";
+    let QcharEnemyImagePath = "pages_data/enemyQ/";
+    // for(let char of battlemsg.player.playerchar){
+    //     imageFile = "yukikaze.png";
+    //     let charDrawMsg = new GameChar(char, QcharImagePath + imageFile);
+    //     charDrawMsg.alignment = "self";
+    //     game_BattlePlayerChar.push(charDrawMsg);
+    // }
     for(let char of battlemsg.enemy.enemy){
-        let charDrawMsg = {}
-        charDrawMsg.pos = char.pos
-        charDrawMsg.imageFile = "yukikaze.png"
-        charDrawMsg.image = new Image()
-        charDrawMsg.image.src = QcharImagePath + charDrawMsg.imageFile
-        game_BattleEnemyChar.push(charDrawMsg)
+        imageFile = "yukikaze.png";
+        let charDrawMsg = new GameChar(char, QcharEnemyImagePath + imageFile);
+        charDrawMsg.alignment = "enemy";
+        game_BattleEnemyChar.push(charDrawMsg);
     }
 
     window.requestAnimationFrame(game_frame_main)
+}
+
+function pause_game(){
+    game_BattlePlay = !game_BattlePlay;
+    return game_BattlePlay
 }
