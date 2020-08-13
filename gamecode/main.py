@@ -70,3 +70,25 @@ def ret_main_msg(cate):
         "msg": retMsg
     }
     return msg
+
+def ret_battle_msg(cate, res):
+    if(cate == "gridmapstart"):
+        new_game_grid()
+        retType, retMsg = chapter.ret_msg_and_setup_gridmap(cate, res["areaId"], res["mapId"], player.fleet)
+    elif(cate == "battlestart"):
+        new_game_battle()
+        x = res["x"]
+        y = res["y"]
+        pos = [int(x), int(y)] # x, y
+        retType, retMsg = chapter.ret_msg_and_setup_battle(gameMap, pos, gameBattle)
+    elif(cate == "battlenextgroup"): # nextgroup means one battle have multi group enemy
+        retType, retMsg = chapter.ret_battle_next_group(gameBattle)
+        if("finish" in retMsg):
+            chapter.enemyKilled()
+    elif(cate == "battlecontinue"): # continue means in standard time, player can't kill enemy, for boss
+        pass
+    msg = {
+        "type": retType,
+        "msg": retMsg
+    }
+    return msg

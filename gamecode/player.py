@@ -151,6 +151,16 @@ class Player:
             self.char[charid]["exp"] -= lmt.char_exp_need[self.char[charid]["level"]]
             self.char[charid]["level"] += 1
     
+    def reward_item(self, item):
+        if(item["cate"] == "I"):
+            warehouse = self.item["normal"]
+        elif(item["cate"] == "E"):
+            warehouse = self.item["equip"]
+        if(item["id"] not in warehouse):
+            warehouse[item["id"]] = item["value"]
+        else:
+            warehouse[item["id"]] += item["value"]
+            
     def get_blueprint_num(self, cid):
         if(cid in self.item["blueprint"]):
             return self.item["blueprint"][cid]

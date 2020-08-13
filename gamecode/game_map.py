@@ -8,6 +8,7 @@ class GameMap:
         self.clear = False
         self.enemyPosList = []
         self.enemyDestoryPosList = []
+        self.playerPosList = [0, 0]
         self.mapSize = [0, 0]
         self.killedEnemy = 0
 
@@ -41,7 +42,15 @@ class GameMap:
         # return msg
         msg["mapsize"] = self.mapSize
         msg["startpos"] = self.playerAppearControl["startpos"]
+        self.playerPosList = msg["startpos"]
         return msg
+
+    def get_enemy_by_pos(self, enemyPos):
+        for e in gameMap.enemyPosList:
+            if(e["pos"] == enemyPos):
+                enemyFleet = gameMap.enemyGroups[e["enemy"]]
+                self.playerPosList = enemyPos
+                return enemyFleet
 
     def set_map_msg_refresh(self, res):
         pass

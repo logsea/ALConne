@@ -47,14 +47,18 @@ function get_mapdetail(area, mapid){
 
 function get_mapgrid_initial(){
     send = {
-        'type':'main-gridmapstart-'+String(rememberAreaId)+'-'+String(rememberMapId)
+        'type':'battle-gridmapstart',
+        'areaId':rememberAreaId,
+        'mapId':rememberMapId
     }
     link_client_pagemain(send)
 }
 
 function get_battle_start(){
     send = {
-        'type': 'main-battlestart-'+String(game_playerPos[0])+'-'+String(game_playerPos[1])
+        'type': 'battle-battlestart',
+        'x': game_playerPos[0],
+        'y': game_playerPos[1]
     }
     link_client_pagemain(send)
 }

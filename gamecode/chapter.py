@@ -1,4 +1,5 @@
 import numlimit as lmt
+from reward import battle_end_reward
 
 db = None
 player = None
@@ -38,13 +39,13 @@ def map_msg(area_id, map_id):
     msg["mapnum"] = needMap["mapnum"]
     msg["enemylevel"] = needMap["enemylevel"]
     msg["enemy"] = needMap["occurenemy"]
-    itemlist = []
-    for item in needMap["dropitem"]:
-        itemd = {}
-        itemd["id"] = item["id"]
-        itemd["rarity"] = db.get_rarity(item["id"])
-        itemlist.append(itemd)
-    msg["dropitem"] = itemlist
+    # itemlist = []
+    # for item in needMap["dropitem"]:
+    #     itemd = {}
+    #     itemd["id"] = item["id"]
+    #     itemd["rarity"] = db.get_rarity(item["id"])
+    #     itemlist.append(itemd)
+    # msg["dropitem"] = itemlist
     
     itemlist = []
     for item in needMap["mapdrop"]:
@@ -76,16 +77,24 @@ def mapgrid_next_msg():
 def init_battle_msg(gameMap, enemyPos, gameBattle):
     msg = {}
     enemyFleet = None
-    for e in gameMap.enemyPosList:
-        # print(enemyPos, e["pos"])
-        # if(e["pos"][0] == enemyPos[0] and e["pos"][1] == enemyPos[1]):
-        if(e["pos"] == enemyPos):
-            # print(True)
-            enemyFleet = gameMap.enemyGroups[e["enemy"]]
+    enemyFleet = gameMap.get_enemy_by_pos(enemyPos)
     # 0 present Self Fleet No.0, the default fleet, need to modify
     gameBattle.set_battle_msg(gameMap.playerFleet[0], enemyFleet, db)
     msg["player"] = gameBattle.get_player_fleet_msg(player, 0)
     msg["enemy"] = gameBattle.get_next_group_msg(db)
+    return msg
+
+def battle_next_group(gameBattle):
+    msg = {}
+    enemyState = gameBattle.get_next_group_msg(db)
+    if(enemyState != False):
+        msg["enemy"] = enemyState
+    else:
+        msg["finish"] = True
+        rewardMulti = db.rewardMulti["SS"]
+        msg["reward"] = battle_end_reward(gameBattle.enemyGroups["reward"], rewardMulti)
+        for item in msg["reward"]:
+            player.reward_item(item)
     return msg
 
 def ret_msg(cate, cate_id = None):
@@ -117,3 +126,9 @@ def ret_msg_and_setup_gridmap(cate, cate_id, gameMap, playerFleet):
 def ret_msg_and_setup_battle(gameMap, enemyPos, gameBattle):
     msg = init_battle_msg(gameMap, enemyPos, gameBattle)
     return "battlestart", msg
+
+def ret_battle_next_group(gameBattle):
+    msg = battle_next_group(gameBattle)
+    if("finish in msg"):
+        return "battleend", msg
+    return "battlenextgroup", msg

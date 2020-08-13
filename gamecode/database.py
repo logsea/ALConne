@@ -72,6 +72,21 @@ class DataBase:
             [15, 0, 20, 50, 5],
             [15, 5, 20, 150, 50]
         ]
+        # SS: no char lose and in limited time(60s default)
+        # S: no char lose and in limited time(120s default)
+        # A: char lose or overtime(120s default)
+        # B: char lose and overtime(120s default)
+        # ↑ battle win ↑ & ↓ battle lose ↓
+        # C: flagship lose or timeup(180s default)
+        # D: all ship lose
+        self.rewardMulti = {
+            "SS": 1.5,
+            "S": 1.2,
+            "A": 1.0,
+            "B": 0.8,
+            "C": 0.2,
+            "D": 0.1
+        }
 
     def read_char(self, id):
         file = open(os.path.join(root,"data/char/"+id+".json"), encoding='UTF-8')
