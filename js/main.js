@@ -125,6 +125,8 @@ function append_chardetail(res){
         // $attrdiv.text(attrname[attrid]+":"+res["attr"][attr[attrid]])
         $elem.find(".char-detail-attr").append($attrdiv)
     }
+    let navi = $("#template-block .char-detail-navi");
+    $elem.append(navi);
     $elem.find(".game-block-title-back").click(event=>{
         get_charlist()
     })
@@ -306,6 +308,9 @@ function get_add_block(res){
         $newblock = append_charlist(res.msg);
     }
     else if(res.type == "chardetail"){
+        $newblock = append_chardetail(res.msg);
+    }
+    else if(res.type == "detailreinforce"){
         $newblock = append_chardetail(res.msg);
     }
     else if(res.type == "mapselect"){

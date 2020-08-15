@@ -20,6 +20,12 @@ function get_chardetail(id){
     }
     link_client_pagemain(send)
 }
+function get_chardetail_reinforce(id){
+    send = {
+        'type':'chardetail-reinforce-'+String(id)
+    }
+    link_client_pagemain(send)
+}
 
 function get_mapselect(id){
     send = {
@@ -77,5 +83,20 @@ $(document).ready(()=>{
     rememberAreaId = 1
     $(".main-battle").click(function(){
         get_mapselect(rememberAreaId)
+    })
+
+    $("#char-detail-navi .overall").click(id=>{
+        get_chardetail(id)
+    })
+    $("#char-detail-navi .equip").click(id=>{
+    })
+    $("#char-detail-navi .reinforce").click(id=>{
+        get_chardetail_reinforce(id)
+    })
+    $("#char-detail-navi .skill").click(id=>{
+    })
+    $("#char-detail-navi .refine").click(id=>{
+    })
+    $("#char-detail-navi .other").click(id=>{
     })
 })

@@ -71,6 +71,11 @@ def ret_main_msg(cate):
     }
     return msg
 
+def ret_chardetail_msg(cate):
+    action, charid = cate.split('-', 1)
+    charmsg = player.ret_detail_msg(action, charid)
+    return msg
+
 def ret_battle_msg(cate, res):
     if(cate == "gridmapstart"):
         new_game_grid()

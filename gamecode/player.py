@@ -130,6 +130,15 @@ class Player:
             ret["attr"] = self.char_get_attr(id)
             return "chardetail", ret
 
+    def ret_detail_msg(self, action, charid):
+        ret = {}
+        if(action == "reinforce"):
+            ret["id"] = self.char[id]
+            ret["level"] = char["level"]
+            ret["exp"] = char["exp"]
+            ret["expmax"] = lmt.char_exp_need[char["level"]]
+        return "detailreinforce", ret
+
     def char_get_attr(self, id):
         attr = {}
         char_detail = db.char[id]

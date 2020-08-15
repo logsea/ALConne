@@ -413,6 +413,35 @@ body{
                     }
                 }
 
+.char-detail-navi{
+    display: flex;
+    flex-direction: row;
+    margin: 5px auto;
+    align-self: center;
+    width: 420px;
+}
+    .char-detail-navi-button{
+        width: 70px;
+        height: 24px;
+        font-size: 18px;
+        background-color: #ff398580;
+        color: #fff;
+        text-align: center;
+        transition: 200ms;
+        font-family: priconne;
+    }
+        .char-detail-navi-button:hover{
+            background-color: #ff3985;
+        }
+    .char-detail-navi-button:first-child{
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+    .char-detail-navi-button:last-child{
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
 .char-detail-attr-illu{
     height: 300px;
     display: flex;
@@ -504,6 +533,64 @@ body{
             text-align: center;
             background-color: #00000020;
         }
+
+.char-reinforce{
+    height: 300px;
+}
+    .char-detail-reinforce-lvexp{
+        display: flex;
+        flex-direction: row;
+        font-family: resource;
+        font-size: 20px;
+        height: 25px;
+        margin-bottom: 10px;
+    }
+        .char-detail-reinforce-lv{
+            width: 50px;
+        }
+        .char-detail-reinforce-exp{
+            width: 300px;
+            font-size: 20px;
+            padding-left: 10px;
+            background: linear-gradient(to right,rgb(129, 185, 77),rgb(129, 185, 77) 40%, rgba(129, 185, 77, 0.5) 40%, rgba(129, 185, 77, 0.5));
+        }
+    .char-detail-reinforce-items{
+        height: 200px;
+    }
+    .char-detail-reinforce-item{
+        /* height: 50px; */
+        display: flex;
+        flex-direction: row;
+        font-family: priconne;
+        border-radius: 5px;
+        transition: 200ms;
+        padding: 2px 5px;
+        margin-bottom: 5px;
+    }
+        .char-detail-reinforce-item:hover{
+            box-shadow: 0 0 1px 1px #ff3985;
+        }
+        .char-detail-reinforce-item-img{
+            height: 50px;
+            width: 50px;
+            background-image: url("../pages_data/item/activity_tickets.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .char-detail-reinforce-item-intro{
+            width: 300px;
+        }
+        .char-detail-reinforce-item-use{
+            height: 24px;
+            margin: auto 0;
+            border: solid rgb(93, 177, 255) 1px;
+            padding: 2px 10px;
+            border-radius: 5px;
+            transition: 200ms;
+        }
+            .char-detail-reinforce-item-use:hover{
+                background-color: rgba(93, 177, 255, 0.5);
+            }
 
 .map-select{
     height: 300px;
