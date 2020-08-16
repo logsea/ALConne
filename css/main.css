@@ -42,7 +42,7 @@ body{
 }
 
 #template-block{
-    display: none;
+    /* display: none; */
 }
 
 #gametitle{
@@ -591,6 +591,102 @@ body{
             .char-detail-reinforce-item-use:hover{
                 background-color: rgba(93, 177, 255, 0.5);
             }
+
+.char-equip{
+    height: 300px;
+    font-family: priconne;
+}
+    .char-equip-list{
+        height: 54px;
+        width: 450px;
+    }
+        .char-equip-image{
+            height: 50px;
+            width: 50px;
+            border: solid 2px;
+            background-image: url("../pages_data/equip/mogami-155.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    .char-equip-detail-choose{
+        margin-top: 5px;
+        display: flex;
+        flex-direction: row;
+    }
+        .char-equip-detail-action{
+            width: 100px;
+            color: #ff3985;
+            background-color: #aaa;
+            text-align: center;
+        }
+        .char-equip-detail-action:first-child{
+            border-top-left-radius: 5px;
+        }
+        .char-equip-detail-action:last-child{
+            border-top-right-radius: 5px;
+        }
+        .char-equip-detail-action.active{
+            background-color: #e8e8e8;
+        }
+    .char-equip-detail{
+        display: flex;
+        flex-direction: row;
+        width: 450px;
+    }
+    .char-equip-attrs, .char-equip-reinforce{
+        width: 0;
+        overflow: hidden;
+        transition: 200ms;
+        padding-top: 5px;
+    }
+        .char-equip-attrs.active, .char-equip-reinforce.active{
+            width: 450px;
+        }
+        .char-equip-attr{
+            width: 140px;
+            height: 30px;
+            margin-right: 10px;
+            border-bottom: 1px solid black;
+            padding-bottom: 2px;
+            display: flex;
+        }
+            .char-equip-attrname{
+                width: 60px;
+            }
+            .char-equip-value{
+                width: 80px;
+                text-align: right;
+            }
+        .char-equip-reinforce-intro{
+            height: 30px;
+        }
+        .char-equip-stars{
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            font-size: 20px;
+        }
+            .char-equip-star-big{
+                color: #ff3985;
+                -webkit-text-stroke: 1px black;
+            }
+            .char-equip-star{
+                font-size: 16px;
+                color: gold;
+                -webkit-text-stroke: 1px black;
+            }
+            .char-equip-reinforce-lv{
+                height: 24px;
+                margin: 0 5px;
+                font-family: resource;
+            }
+            .char-equip-reinforce-exp{
+                height: 24px;
+                font-family: resource;
+            }
+
+
+
 
 .map-select{
     height: 300px;

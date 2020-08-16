@@ -85,18 +85,31 @@ $(document).ready(()=>{
         get_mapselect(rememberAreaId)
     })
 
-    $("#char-detail-navi .overall").click(id=>{
+    $(".char-detail-navi .overall").click(id=>{
         get_chardetail(id)
     })
-    $("#char-detail-navi .equip").click(id=>{
+    $(".char-detail-navi .equip").click(id=>{
     })
-    $("#char-detail-navi .reinforce").click(id=>{
+    $(".char-detail-navi .reinforce").click(id=>{
         get_chardetail_reinforce(id)
     })
-    $("#char-detail-navi .skill").click(id=>{
+    $(".char-detail-navi .skill").click(id=>{
     })
-    $("#char-detail-navi .refine").click(id=>{
+    $(".char-detail-navi .refine").click(id=>{
     })
-    $("#char-detail-navi .other").click(id=>{
+    $(".char-detail-navi .other").click(id=>{
+    })
+
+    $(".char-equip-detail-action").click(event=>{
+        let $container = $(event.target).closest(".char-detail-attr").find(".char-equip-detail")
+        $container.children().removeClass("active")
+        // let attrs = $container.find("char-equip-attrs")
+        // let reins = $container.find("char-equip-reinforce")
+        if($(event.target).hasClass("attrs")){
+            $container.find(".char-equip-attrs").addClass("active")
+        }
+        if($(event.target).hasClass("reinforce")){
+            $container.find(".char-equip-reinforce").addClass("active")
+        }
     })
 })

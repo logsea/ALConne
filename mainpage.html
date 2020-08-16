@@ -140,12 +140,11 @@
           <div class="map-select-mapimage"></div>
           <div class="map-select-selecter">
             <div class="map-select-chapter-select">
-              <div class="map-select-prev"><</div>
+              <div class="map-select-prev">＜</div>
               <div class="map-select-chapter"></div>
-              <div class="map-select-next">></div>
+              <div class="map-select-next">＞</div>
               </div>
-            <div class="map-select-subchapter-select">
-              </div>
+            <div class="map-select-subchapter-select"></div>
             </div>
           </div>
         </div>
@@ -222,29 +221,66 @@
         <div class="game-block-title">
           <div class="game-block-title-back"> ← </div>
           <div class="game-block-title-name">角色详情-强化</div>
-          </div>
+        </div>
         <div class="char-detail-attr-illu">
           <div class="char-detail-attr">
             <div class="char-detail-reinforce-lvexp">
               <div class="char-detail-reinforce-lv">Lv.99</div>
               <div class="char-detail-reinforce-exp">400000/1000000</div>
-              </div>
+            </div>
             <div class="char-detail-reinforce-items">
               <div class="char-detail-reinforce-item">
                 <div class="char-detail-reinforce-item-img"></div>
                 <div class="char-detail-reinforce-item-intro">提升角色经验值100点</div>
                 <div class="char-detail-reinforce-item-use">使用</div>
-                </div>
               </div>
             </div>
+          </div>
           <div class="char-detail-illu">
             <div class="char-detail-name"></div>
             <div class="char-detail-enname"></div>
-            </div>
           </div>
-          <div class="char-detail-action"></div>
         </div>
       </div>
+      <div class="game-block char-equip appear">
+        <div class="game-block-title">
+          <div class="game-block-title-back"> ← </div>
+          <div class="game-block-title-name">角色详情-装备</div>
+        </div>
+        <div class="char-detail-attr-illu">
+          <div class="char-detail-attr">
+            <div class="char-equip-list">
+              <div class="char-equip-image rarity-5"></div>
+            </div>
+            <div class="char-equip-detail-choose">
+              <div class="char-equip-detail-action attrs active">装备属性</div>
+              <div class="char-equip-detail-action reinforce">装备强化</div>
+            </div>
+            <div class="char-equip-detail">
+              <div class="char-equip-attrs active">
+                <div class="char-equip-attr">
+                  <div class="char-equip-attrname">伤害</div>
+                  <div class="char-equip-value">15x4</div>
+                </div>
+              </div>
+              <div class="char-equip-reinforce">
+                <div class="char-equip-reinforce-intro">强化的是装备槽而不是装备本身</div>
+                <div class="char-equip-stars">
+                  <div class="char-equip-star-big">★★</div>
+                  <div class="char-equip-star">★★★</div>
+                  <div class="char-equip-reinforce-lv">Lv:13/20</div>
+                  <div class="char-equip-reinforce-exp">Exp:1500/2000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="char-detail-illu">
+            <div class="char-detail-name"></div>
+            <div class="char-detail-enname"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
   <script>
     require('./js/renderer.js')
