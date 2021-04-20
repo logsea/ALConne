@@ -1,5 +1,6 @@
 link_client_pagemain = null;
 link_client_noblock_pagemain = null;
+link_client_noreply_pagemain = null;
 let mainFrame = null;
 const max_block_num = 50;
 
@@ -82,7 +83,7 @@ function append_charlist(res){
         $new_charblock.find(".char-star-ready").text("★".repeat(char["star"]))
         $new_charblock.find(".char-star-notready").text("★".repeat(5-char["star"]))
         $new_charblock.find(".char-name").text(char["name"])
-        $new_charblock.click(evnet=>{
+        $new_charblock.click(event=>{
             get_chardetail($(event.target).find('.char-id').text())
         })
         $elem.find(".char-list").append($new_charblock)
@@ -94,16 +95,6 @@ function append_charlist(res){
 }
 
 function append_chardetail(res){
-    let attr = [
-        "hp", "armor", "antitorp", "firepower", "torpedo", "aa", "planebomb", "planetorp", "planeaa",
-        "aim", "flexibility", "torpflex", "antiair",
-        "reload", "tpreload", "repair", "fastrepair"
-    ]
-    let attrname = [
-        "HP", "装甲", "防雷", "火力", "鱼雷", "对空", "航弹", "航雷", "空战", "命中",
-        "闪避", "鱼雷机动", "防空", 
-        "装填", "技能装填", "维修", "损管"
-    ]
     let $elem = $("#template-block .char-detail").clone(true, true);
     $elem.find(".char-detail-attr-lv").text("Lv."+res["level"])
     $elem.find(".char-detail-attr-exp").text("EXP."+res["exp"]+"/"+res["expmax"])
@@ -112,23 +103,96 @@ function append_chardetail(res){
         "linear-gradient(to right,rgb(129, 185, 77),rgb(129, 185, 77) " + 
         exp_per + ", rgba(129, 185, 77, 0.2) " + exp_per + ", rgba(129, 185, 77, 0.2))");
     $elem.find(".char-detail-name").text(res["name"])
-    for(const attrid of Array(attr.length).keys()){
+    for(const attrid of _characterAttributeShowOrder){
         $attrdiv = $("<div/>", {
             "class": "char-detail-attr-item char-detail-attr-short"
         });
         $attrdiv.append($("<div/>", {
             "class": "char-detail-attr-item-name"
-        }).text(attrname[attrid]))
+        }).text(_normalAttribute[attrid]))
         $attrdiv.append($("<div/>", {
             "class": "char-detail-attr-item-value"
-        }).text(res["attr"][attr[attrid]]))
+        }).text(res["attr"][attrid]))
         // $attrdiv.text(attrname[attrid]+":"+res["attr"][attr[attrid]])
         $elem.find(".char-detail-attr").append($attrdiv)
     }
-    let navi = $("#template-block .char-detail-navi");
+    let navi = $("#template-block .char-detail-navi").clone(true, true);
+    navi.find(".overall").addClass("no-active");
     $elem.append(navi);
     $elem.find(".game-block-title-back").click(event=>{
-        get_charlist()
+        get_charlist();
+    })
+    return $elem;
+}
+
+function popup_choose_equip(res){
+    let $elem = $("#choose-equip");
+    $elem.find(".popup-equip-list").empty()
+    // py返回的可使用的装备列表
+    nowEquipList = res;
+    for(const equip of res){
+        let id = equip.id;
+        let enhance = equip.enhance;
+        let equipNumber = equip.number;
+        let $equipBlock = $("<div>", { "class": "popup-equip-block" });
+        let image = $("<div>", { "class": "popup-equip-image" });
+        if(enhance > 0){
+            let enhanceDiv = $("<div>", { "class": "popup-equip-enhance" }).text("+" + enhance);
+            image.append(enhanceDiv);
+        }
+        if(equipNumber > 1){
+            let numberDiv = $("<div>", { "class": "popup-equip-number" }).text(equipNumber);
+            image.append(numberDiv);
+        }
+        image.addClass("rarity-" + equip.attrs.rarity);
+        $equipBlock.append(image);
+        $equipBlock.on("click", event=>{
+            popupSelectEquip = $(event.target).index();
+            set_popup_equip_attrs($elem);
+        })
+        $elem.find(".popup-equip-list").append($equipBlock);
+    }
+    // 弹出框中选择的装备的序号，打开时默认第一个
+    popupSelectEquip = null;
+    if(nowEquipList.length > 0){
+        popupSelectEquip = 0;
+        set_popup_equip_attrs($elem);
+        $elem.find(".choose-equip-ok").removeClass("no-select");
+    }
+    else
+        $elem.find(".choose-equip-ok").addClass("no-select");
+    $elem.addClass("active");
+}
+
+function append_chardetail_equip(res){
+    let $elem = $("#template-block .char-equip").clone(true, true);
+    detailEquip = res.equip;
+    detailEquipSelect = 0;
+    let equipNum = 0;
+    for(const equip of detailEquip){
+        if(equip.id != 0){
+            $equipicon = $elem.find(".char-equip-list .char-equip-block").eq(equipNum);
+            change_chardetail_icon($equipicon, equip)
+        }
+        equipNum += 1;
+    }
+    set_chardetail_equip_attrs($elem, detailEquip[detailEquipSelect]);
+    let navi = $("#template-block .char-detail-navi").clone(true, true);
+    navi.find(".equip").addClass("no-active");
+    $elem.append(navi);
+    $elem.find(".game-block-title-back").click(event=>{
+        get_charlist();
+    })
+    return $elem;
+}
+
+function append_chardetail_reinforce(res){
+    let $elem = $("#template-block .char-reinforce").clone(true, true);
+    let navi = $("#template-block .char-detail-navi").clone(true, true);
+    navi.find(".reinforce").addClass("no-active");
+    $elem.append(navi);
+    $elem.find(".game-block-title-back").click(event=>{
+        get_charlist();
     })
     return $elem;
 }
@@ -297,37 +361,22 @@ function append_battlescene(res){
 }
 
 function get_add_block(res){
-    if(res.type == "plaintext"){
-        $newblock = append_plain_text(res);
-        
+    f_$newblock = {
+        "plaintext": append_plain_text,
+        "main": append_main,
+        "charlist": append_charlist,
+        "chardetail": append_chardetail,
+        "detailequip": append_chardetail_equip,
+        "detailreinforce": append_chardetail_reinforce,
+        "mapselect": append_mapselect,
+        "mapdetail": append_mapdetail,
+        "gridmapstart": append_gridmap,
+        "battlestart": append_battlescene,
     }
-    else if(res.type == "main"){
-        $newblock = append_main(res.msg);
-    }
-    else if(res.type == "charlist"){
-        $newblock = append_charlist(res.msg);
-    }
-    else if(res.type == "chardetail"){
-        $newblock = append_chardetail(res.msg);
-    }
-    else if(res.type == "detailreinforce"){
-        $newblock = append_chardetail(res.msg);
-    }
-    else if(res.type == "mapselect"){
-        $newblock = append_mapselect(res.msg);
-    }
-    else if(res.type == "mapdetail"){
-        $newblock = append_mapdetail(res.msg);
-    }
-    else if(res.type == "gridmapstart"){
-        $newblock = append_gridmap(res.msg);
-    }
-    else if(res.type == "battlestart"){
-        $newblock = append_battlescene(res.msg);
-    }
-    else{
+    if(!(res.type in f_$newblock)){
         return undefined;
     }
+    $newblock = f_$newblock[res.type](res.msg)
     return $newblock
 }
 function check_block_overflow(){
@@ -336,7 +385,6 @@ function check_block_overflow(){
         $($elements).first().remove()
     }
 }
-
 function add_block(resjson){
     res = JSON.parse(resjson);
     $newblock = get_add_block(res);
@@ -349,6 +397,9 @@ function add_block(resjson){
     window.setTimeout(function(){
         $("html, body").animate({ scrollTop: $(document).height() }, 1000);
     }, 110);
+}
+function now_activate_block(){
+    return mainFrame.find(".game-block").last();
 }
 
 $(document).ready(function(){

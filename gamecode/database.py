@@ -16,9 +16,9 @@ class DataBase:
         self.char = {}
         # all attr
         self.attr = [
-            "hp", "firepower", "torpedo", "planebomb", "planetorp", "planeaa",
-            "aim", "flexibility", "torpflex", "aa", "armor", "antitorp", "antiair",
-            "reload", "tpreload", "repair", "fastrepair"
+            "hp", "firepower", "torpedo", "plane",
+            "aim", "flexibility", "aa", "armor",
+            "reload", "repair"
         ]
 
         self.area = {}
@@ -40,6 +40,8 @@ class DataBase:
         self.item["blueprint"] = {}
         self.read_items(["equip", "normal"])
 
+        self.equipCount = 6
+
         self.charEquipslotRarity = [
             [1, 1, 1, 1, 1, 1],
             [2, 1, 1, 1, 1, 1],
@@ -53,13 +55,10 @@ class DataBase:
             [6, 6, 6, 5, 5, 5],
         ]
         self.rarityEnhence = [
-            None,
-            [],
-            [10],
-            [10],
-            [10],
-            [20, 20, 60],
-            [30, 30, 80, 110],
+            3, 3, 6, 9, 10, 13
+        ]
+        self.rarityBreakEnhence = [
+            None, 4, 7, 10, 13, 15
         ]
         self.expCore = [
             11, 12, 13, 14, 15
@@ -131,10 +130,12 @@ class DataBase:
 
     def read_item(self, item, itype):
         if(itype == "equip"):
+            print(item)
             itemobj = {
                 "id":item["id"],
                 "name":item["name"],
                 "rarity":item["rarity"],
+                "origin": item["origin"] if("origin" in item) else 0,
                 "type":item["type"],
                 "lv":item["lv"],
                 "attr":{}
@@ -160,6 +161,28 @@ class DataBase:
             if("desc" in item):
                 itemobj["desc"] = item["desc"]
             return itemobj
+
+    def get_equip_attr(self, id, enhance):
+        attr = {}
+        equip = self.item["equip"][id]
+        # TODO: 这里现在是取引用，因此会出现问题，之后部分地方换成浅拷贝
+        attr = equip["attr"]
+        if(enhance > 0 and "attrenhance" in equip):
+            for k, v in equip["attrenhance"]:
+                attr[k] = attr[k] + v[enhance]
+        if(enhance > 0):
+            attr["name"] += equip["name"] + "+" + str(enhance)
+        else:
+            attr["name"] = equip["name"]
+        attr["desc"] = equip["desc"]
+        attr["rarity"] = equip["rarity"]
+        attr["origin"] = equip["origin"]
+        return attr
+
+    def get_char_msg(self, id, msg):
+        if(msg == "equipable"):
+            return self.char[id].equip
+        pass
 
     def get_rarity(self, id):
         if(id == "exp" or id == "money"):

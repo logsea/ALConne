@@ -18,8 +18,8 @@ playerclass.db = db
 chapter.db = db
 game_battle.db = db
 
-player = playerclass.Player()
-chapter.player = player
+playerdata = playerclass.Player()
+chapter.player = playerdata
 
 gameMap = None
 gameBattle = None
@@ -32,7 +32,7 @@ def ret_plain_text(msg):
 def load_savedata():
     with open("save/save.json", encoding='UTF-8') as f:
         savedata = json.load(f)
-        player.readsave(savedata)
+        playerdata.readsave(savedata)
     pass
 
 load_savedata()
@@ -51,12 +51,12 @@ def ret_main_msg(cate):
     else:
         cateId = None
     if(cate == "mainpage" or cate == "charlist" or cate == "chardetail"):
-        retType, retMsg = player.ret_msg(cate, cateId)
+        retType, retMsg = playerdata.ret_msg(cate, cateId)
     elif(cate == "chapter" or cate == "map"):
         retType, retMsg = chapter.ret_msg(cate, cateId)
     elif(cate == "gridmapstart"):
         new_game_grid()
-        retType, retMsg = chapter.ret_msg_and_setup_gridmap(cate, cateId, gameMap, player.fleet)
+        retType, retMsg = chapter.ret_msg_and_setup_gridmap(cate, cateId, gameMap, playerdata.fleet)
     elif(cate == "battlestart"):
         new_game_battle()
         x, y = cateId.split('-', 1)
@@ -71,15 +71,27 @@ def ret_main_msg(cate):
     }
     return msg
 
-def ret_chardetail_msg(cate):
+chardetailNoReply = [
+    "getequip"
+]
+
+def ret_chardetail_msg(cate, receiveMsg):
     action, charid = cate.split('-', 1)
-    charmsg = player.ret_detail_msg(action, charid)
+    if(action in chardetailNoReply):
+        retType, retMsg = playerdata.receive_detail_msg(action, receiveMsg)
+        retMsg["noreply"] = True
+    else:
+        retType, retMsg = playerdata.ret_detail_msg(action, charid)
+    msg = {
+        "type": retType,
+        "msg": retMsg
+    }
     return msg
 
 def ret_battle_msg(cate, res):
     if(cate == "gridmapstart"):
         new_game_grid()
-        retType, retMsg = chapter.ret_msg_and_setup_gridmap(cate, res["areaId"], res["mapId"], player.fleet)
+        retType, retMsg = chapter.ret_msg_and_setup_gridmap(cate, res["areaId"], res["mapId"], gameMap, playerdata.fleet)
     elif(cate == "battlestart"):
         new_game_battle()
         x = res["x"]
@@ -92,8 +104,25 @@ def ret_battle_msg(cate, res):
             chapter.enemyKilled()
     elif(cate == "battlecontinue"): # continue means in standard time, player can't kill enemy, for boss
         pass
+    else:
+        retType = ""
+        retMsg = ""
     msg = {
         "type": retType,
         "msg": retMsg
     }
+    return msg
+
+def ret_item_msg(code, msg):
+    # print(code, msg)
+    if(code == "equip"):
+        categories = msg
+        retType, retMsg = playerdata.equipWithCategory(categories)
+    else:
+        retType = ""
+        retMsg = ""
+    msg = {
+        "type": retType,
+        "msg": retMsg
+    }    
     return msg

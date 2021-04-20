@@ -1,0 +1,29 @@
+.warehouse-category-container{
+    margin: 10px 10px 0 10px;
+    display: flex;
+    overflow: hidden;
+}
+
+.warehouse-category-hidden{
+    margin-right: 10px;
+    height: 20px;
+    width: 20px;
+    content: "X";
+}
+
+.warehouse-category{
+    width: 100px;
+    height: 20px;
+    font-size: 18px;
+    line-height: 20px;
+    background-color: #1E90FF80;
+    transition: 200ms;
+    text-align: center;
+    margin-right: 5px;
+}
+.warehouse-category:hover{
+    background-color: #1E90FFB0;
+}
+.warehouse-category.active{
+    background-color: #1E90FF;
+}

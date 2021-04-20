@@ -4,36 +4,66 @@
             "id":2000001,
             "name":"单装457mm鱼雷 原始型",
             "desc":"皇家设计的舰载鱼雷，口径在当时是相当大的，有足够的攻击能力。",
+            "origin":2,
             "rarity":1,
             "type":11,
             "lv":1,
             "attr":{
-                "torpedo":30
+                "damage":30,
+                "shellnum":1,
+                "round":1,
+                "filling":10000,
+                "torpedo":15,
+                "dmgfactor":[0.6, 1.2, 1.5, 0.1],
+                "dmgeffect":1.0,
+                "firerange":100,
+                "fireangle":5,
+                "dmgrange":0,
+                "spreadrange":2
             }
         },
         {
             "id":2000002,
             "name":"单装450mmG-1鱼雷 原始型",
             "desc":"这是一款旧式深水雷，非常易爆，因此还随之配备了损害预防装置。",
+            "origin":1,
             "rarity":1,
             "type":11,
             "lv":1,
             "attr":{
-                "torpedo":10,
-                "fastrepair": 10
+                "damage":40,
+                "shellnum":1,
+                "round":1,
+                "filling":10000,
+                "torpedo":15,
+                "dmgfactor":[0, 0.8, 2.0, 0],
+                "dmgeffect":1.0,
+                "firerange":100,
+                "fireangle":5,
+                "dmgrange":0,
+                "spreadrange":2
             }
         },
         {
             "id":2000003,
             "name":"双联装324mm鱼雷 原始型",
             "desc":"白鹰用于对付小型目标的鱼雷，装填时间较快，命中概率也比较高。",
+            "origin":1,
             "rarity":1,
-            "type":11,
+            "type":12,
             "lv":1,
             "attr":{
-                "torpedo":20,
-                "aim":10,
-                "reload":5
+                "damage":24,
+                "shellnum":2,
+                "round":1,
+                "filling":12000,
+                "torpedo":15,
+                "dmgfactor":[1.0, 0.8, 0.4, 0.4],
+                "dmgeffect":1.0,
+                "firerange":100,
+                "fireangle":5,
+                "dmgrange":0,
+                "spreadrange":2
             }
         }
     ]

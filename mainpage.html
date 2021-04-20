@@ -5,6 +5,8 @@
     <title>碧蓝连结</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/popup.css">
+    <link rel="stylesheet" href="css/warehouse.css">
     <link rel="stylesheet" href="css/jquery-ui.min.css">
 
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
@@ -12,7 +14,10 @@
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/game-block-test.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/change-element.js"></script>
     <script src="js/button-action.js"></script>
+    <script src="js/text-convert.js"></script>
+    <script src="js/game-object.js"></script>
     <script src="js/game-control.js"></script>
     <script src="js/draw-canvas.js"></script>
     <script>if (window.module) module = window.module;</script>
@@ -24,10 +29,10 @@
       <div class="copyright">2020 power by logsea</div>
       <img src="pages_data/logo.png"alt="LOGO IMG">
       <div class="game_start_btn_group">
-        <div class="mainbutton" id="gamestart">开始游戏</div>
-        <div class="mainbutton" id="gameload">读取存档</div>
-        <div class="mainbutton" id="gameconfig">游戏设置</div>
-        <div class="mainbutton" id="gameend">退出游戏</div>
+        <div class="mainbutton mainselect" id="gamestart">开始游戏</div>
+        <div class="mainbutton mainselect" id="gameload">读取存档</div>
+        <div class="mainbutton mainselect" id="gameconfig">游戏设置</div>
+        <div class="mainbutton mainselect" id="gameend">退出游戏</div>
         </div>
       </div>
     <div id="gamebody" class="height-no-active">
@@ -127,9 +132,9 @@
         <div class="char-detail-navi-button overall">总览</div>
         <div class="char-detail-navi-button equip">装备</div>
         <div class="char-detail-navi-button reinforce">强化</div>
-        <div class="char-detail-navi-button skill">技能</div>
-        <div class="char-detail-navi-button refine">改造</div>
-        <div class="char-detail-navi-button other">额外</div>
+        <div class="char-detail-navi-button skill no-active">技能</div>
+        <div class="char-detail-navi-button refine no-active">改造</div>
+        <div class="char-detail-navi-button other no-active">额外</div>
         </div>
       <div class="game-block map-select appear">
         <div class="game-block-title">
@@ -183,7 +188,7 @@
           <div class="game-block-title-name"></div>
           </div>
         <div class="map-grid-container">
-          <canvas class="map-grid-map" height="400px" width="650px"></canvas>
+          <canvas class="map-grid-map" height="400px" width="800px"></canvas>
           <div class="map-grid-player"></div>
           </div>
         <div class="map-grid-action">
@@ -196,7 +201,7 @@
         </div>
       <div class="game-block battle-scene appear">
         <div class="battle-container">
-          <canvas class="battle-canvas" height="400px" width="650px"></canvas>
+          <canvas class="battle-canvas" height="400px" width="800px"></canvas>
           </div>
         <div class="battle-order-container">
           <div class="battle-character-order-list">
@@ -217,22 +222,72 @@
           <div class="battle-character-tp"></div>
           </div>
         </div>
-      <div class="game-block char-reinforce appear">
+      <div class="game-block char-equip appear">
         <div class="game-block-title">
           <div class="game-block-title-back"> ← </div>
-          <div class="game-block-title-name">角色详情-强化</div>
+          <div class="game-block-title-name">角色详情-装备</div>
         </div>
         <div class="char-detail-attr-illu">
           <div class="char-detail-attr">
-            <div class="char-detail-reinforce-lvexp">
-              <div class="char-detail-reinforce-lv">Lv.99</div>
-              <div class="char-detail-reinforce-exp">400000/1000000</div>
+            <div class="char-equip-list">
+              <div class="char-equip-block">
+                <div class="char-equip-image"></div>
+                <div class="char-equip-brief active">
+                  <div class="char-equip-name">暂未装备</div>
+                  <div class="char-equip-origin"></div>
+                </div>
+              </div>
+              <div class="char-equip-block">
+                <div class="char-equip-image"></div>
+                <div class="char-equip-brief">
+                  <div class="char-equip-name">暂未装备</div>
+                  <div class="char-equip-origin"></div>
+                </div>
+              </div>
+              <div class="char-equip-block">
+                <div class="char-equip-image"></div>
+                <div class="char-equip-brief">
+                  <div class="char-equip-name">暂未装备</div>
+                  <div class="char-equip-origin"></div>
+                </div>
+              </div>
+              <div class="char-equip-block">
+                <div class="char-equip-image"></div>
+                <div class="char-equip-brief">
+                  <div class="char-equip-name">暂未装备</div>
+                  <div class="char-equip-origin"></div>
+                </div>
+              </div>
+              <div class="char-equip-block">
+                <div class="char-equip-image"></div>
+                <div class="char-equip-brief">
+                  <div class="char-equip-name">暂未装备</div>
+                  <div class="char-equip-origin"></div>
+                </div>
+              </div>
+              <div class="char-equip-block">
+                <div class="char-equip-image"></div>
+                <div class="char-equip-brief">
+                  <div class="char-equip-name">暂未装备</div>
+                  <div class="char-equip-origin"></div>
+                </div>
+              </div>
             </div>
-            <div class="char-detail-reinforce-items">
-              <div class="char-detail-reinforce-item">
-                <div class="char-detail-reinforce-item-img"></div>
-                <div class="char-detail-reinforce-item-intro">提升角色经验值100点</div>
-                <div class="char-detail-reinforce-item-use">使用</div>
+            <div class="char-equip-detail-choose">
+              <div class="char-equip-detail-action attrs active">装备属性</div>
+              <div class="char-equip-detail-action reinforce">装备强化</div>
+            </div>
+            <div class="char-equip-detail">
+              <div class="char-equip-attrs active">
+                
+              </div>
+              <div class="char-equip-reinforce">
+                <div class="char-equip-stars">
+                  <div class="char-equip-star-big"></div>
+                  <div class="char-equip-star"></div>
+                  <div class="char-equip-reinforce-lv"></div>
+                  <div class="char-equip-reinforce-exp"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -242,35 +297,31 @@
           </div>
         </div>
       </div>
-      <div class="game-block char-equip appear">
+      <div class="game-block char-reinforce appear">
         <div class="game-block-title">
           <div class="game-block-title-back"> ← </div>
-          <div class="game-block-title-name">角色详情-装备</div>
+          <div class="game-block-title-name">角色详情-强化</div>
         </div>
         <div class="char-detail-attr-illu">
           <div class="char-detail-attr">
-            <div class="char-equip-list">
-              <div class="char-equip-image rarity-5"></div>
-            </div>
-            <div class="char-equip-detail-choose">
-              <div class="char-equip-detail-action attrs active">装备属性</div>
-              <div class="char-equip-detail-action reinforce">装备强化</div>
-            </div>
-            <div class="char-equip-detail">
-              <div class="char-equip-attrs active">
-                <div class="char-equip-attr">
-                  <div class="char-equip-attrname">伤害</div>
-                  <div class="char-equip-value">15x4</div>
-                </div>
+            <div class="char-reinforce-attrs">
+              <div class="char-reinforce-attr">
+                <div class="char-reinforce-attr-name">等级: 1</div>
+                <div class="char-reinforce-attr-value">40/100</div>
+                <div class="char-reinforce-attr-max">MAX: 100</div>
               </div>
-              <div class="char-equip-reinforce">
-                <div class="char-equip-reinforce-intro">强化的是装备槽而不是装备本身</div>
-                <div class="char-equip-stars">
-                  <div class="char-equip-star-big">★★</div>
-                  <div class="char-equip-star">★★★</div>
-                  <div class="char-equip-reinforce-lv">Lv:13/20</div>
-                  <div class="char-equip-reinforce-exp">Exp:1500/2000</div>
-                </div>
+              <div class="char-reinforce-attr">
+                <div class="char-reinforce-attr-name">炮击: 72</div>
+                <div class="char-reinforce-attr-value">10/25</div>
+                <div class="char-reinforce-attr-max">MAX: 92</div>
+              </div>
+            </div>
+            <div class="char-reinforce-item">
+              <div class="char-reinforce-select-char"></div>
+              <div class="char-reinforce-add-attrs">
+                <div class="char-reinforce-add-attr">经验+10000</div>
+                <div class="char-reinforce-add-attr">炮击+3</div>
+                <div class="char-reinforce-add-attr">雷击+11</div>
               </div>
             </div>
           </div>
@@ -278,6 +329,45 @@
             <div class="char-detail-name"></div>
             <div class="char-detail-enname"></div>
           </div>
+        </div>
+      </div>
+      <div class="game-block warehouse appear">
+        <div class="game-block-title">
+          <div class="game-block-title-back"> ← </div>
+          <div class="game-block-title-name">仓库</div>
+        </div>
+        <div class="warehouse-category-container">
+          <div class="warehouse-category-hidden"></div>
+          <div class="warehouse-category">通常</div>
+          <div class="warehouse-category">装备</div>
+          <div class="warehouse-category">设计图</div>
+          <div class="warehouse-category">心智核心</div>
+        </div>
+        <div class="warehouse-container">
+          <div class=""></div>
+        </div>
+      </div>
+    </div>
+    <div id="popup-blocks">
+      <div id="choose-equip" class="popup">
+        <div class="popup-container choose-equip">
+          <div class="popup-equip-list">
+          </div>
+          <div class="popup-equip-detail">
+            <div class="popup-equip-image rarity-4">
+              <div class="popup-equip-enhance"></div>
+            </div>
+            <div class="popup-equip-attrs">
+              <div class="popup-equip-attr">
+                <div class="popup-equip-attr-attrname"></div>
+                <div class="popup-equip-attr-value">当前无可用装备</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-footer-select">
+          <div class="mainbutton popup-select choose-equip-ok">确认</div>
+          <div class="mainbutton popup-select choose-cancel">取消</div>
         </div>
       </div>
     </div>

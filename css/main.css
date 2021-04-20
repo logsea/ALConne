@@ -8,6 +8,11 @@ body{
 }
 
 @font-face{
+    font-family: normalF;
+    src: url("../pages_data/fonts/Deng.ttf");
+}
+
+@font-face{
     font-family: resource;
     src: url("../pages_data/fonts/resource.ttf");
 }
@@ -42,7 +47,7 @@ body{
 }
 
 #template-block{
-    /* display: none; */
+    display: none;
 }
 
 #gametitle{
@@ -62,11 +67,15 @@ body{
     margin: 0 auto;
 }
 
-.mainbutton{
+.mainselect{
     width: 100px;
+}
+
+.mainbutton{
     text-align: center;
     margin: 5px 0;
-    border: 1px solid #ff3985;
+    border: 1px solid #1E90FF;
+    transition: 200ms;
     border-radius: 5px;
     padding: 2px 0;
     cursor: pointer;
@@ -74,8 +83,7 @@ body{
 }
 
 .mainbutton:hover{
-    background-color: #ff398580;
-    transition: 200ms;
+    background-color: #1E90FF80;
 }
 
 #gamebody{
@@ -99,7 +107,7 @@ body{
     border-bottom: #e8e8e8 solid 2px;
     overflow: hidden;
     filter:brightness(1);
-    font-family: priconne;
+    font-family: normalF;
     user-select: none;
 }
 
@@ -111,7 +119,7 @@ body{
     pointer-events: auto;
 }
 
-.game-block.no-active{
+.game-block.no-active, .char-detail-navi-button.no-active{
     pointer-events: none;
 }
 
@@ -130,16 +138,18 @@ body{
 .paragraph{
     margin-left: 20px;
     /* text-indent: 1em; */
-    font-family: priconne;
+    font-family: normalF;
 }
 
 .game-block-title{
-    font-family: priconne;
+    font-family: normalF;
     font-size: 20px;
     display: flex;
     flex-direction: row;
     user-select: none;
     margin-bottom: 5px;
+    margin-top: 5px;
+    margin-left: 15px;
 }
     .game-block-title-back{
         transition: 200ms;
@@ -148,7 +158,7 @@ body{
         margin-right: 10px;
     }
         .game-block-title-back:hover{
-            background-color: #ff398580;
+            background-color: #1E90FF80;
         }
 
 .next-block{
@@ -168,19 +178,19 @@ body{
         height: 24px;
         min-width: 100px;
         border-radius: 5px;
-        border: #ff3985 solid 1px;
+        border: #1E90FF solid 1px;
         background: #d8d8d8;
         text-align: center;
-        font-family: priconne;
+        font-family: normalF;
         transition: 200ms;
     }
 
     .next-button:hover{
-        background: #ff398580;
+        background: #1E90FF80;
     }
 
 .main-page-block{
-    height: 200px;
+    height: 300px;
     /* background-image: url("../pages_data/main-back.png"); */
     background-size: 50%;
     background-repeat: no-repeat;
@@ -198,7 +208,7 @@ body{
     display: flex;
     flex-direction: row;
     margin-left: 10px;
-    margin-top: 10px;
+    margin-top: 20px;
     user-select: none;
 }
 
@@ -231,15 +241,17 @@ body{
             height: 25px;
             width: 25px;
             margin-right: 3px;
+            background-size: cover;
+            background-repeat: no-repeat;
         }
         .resource-money-icon{
-            background-image: url("../pages_data/25px-Coinicon.png");
+            background-image: url("../pages_data/money.png");
         }
         .resource-oil-icon{
-            background-image: url("../pages_data/25px-Oilicon.png");
+            background-image: url("../pages_data/oil.png");
         }
         .resource-ruby-icon{
-            background-image: url("../pages_data/25px-Ruby.png");
+            background-image: url("../pages_data/starpiece.png");
         }
 
 .main-page-block-choose{
@@ -253,36 +265,39 @@ body{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        width: 224px;
+        width: 270px;
     }
         .main-action{
-            width: 100px;
+            width: 120px;
+            height: 24px;
+            line-height: 24px;
             margin: 0 10px 10px 0;
-            border: #ff3985 solid 1px;
+            border: #1E90FF solid 1px;
             border-radius: 5px;
             text-align: center;
             transition: all 200ms;
             user-select: none;
         }
         .main-action:hover{
-            background: #ff398580;
+            background: #1E90FF80;
         }
 
     .main-page-block-important{
         display: flex;
         flex-direction: row;
         align-items: flex-end;
+        padding-bottom: 10px;
     }
         .main-fleet{
             width: 50px;
             height: 100px;
-            /* border: #ff3985 solid 1px; */
+            /* border: #1E90FF solid 1px; */
             border-radius: 5px;
             background-image: url("../pages_data/setfleet.png");
             transition: 200ms;
         }
         .main-fleet:hover{
-            background: #ff398580;
+            background: #1E90FF80;
             background-image: url("../pages_data/setfleet.png");
         }
 
@@ -295,7 +310,7 @@ body{
             transition: 200ms;
         }
         .main-battle:hover{
-            background: #ff398580;
+            background: #1E90FF80;
             background-image: url("../pages_data/battle.png");
         }
 
@@ -305,7 +320,7 @@ body{
 }
     .char-list{
         height: 300px;
-        width: 620px;
+        width: 800px;
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
@@ -320,18 +335,20 @@ body{
         width: 5px;
     }
         .char-list-block{
-            height: 100px;
-            width: 190px;
+            height: 130px;
+            width: 250px;
             user-select: none;
             margin-bottom: 10px;
             margin-right: 5px;
             border-radius: 5px;
             /* padding: 0 2px; */
             transition: 200ms;
+            background-size: cover;
+            background-repeat: no-repeat;
         }
             .char-list-block:hover{
                 filter: brightness(1.1);
-                box-shadow: 0 0 1px 1px #ff3985;
+                box-shadow: 0 0 1px 1px #1E90FF;
             }
             .char-list-block *{
                 pointer-events: none;
@@ -364,37 +381,42 @@ body{
                 width: 100%;
                 display: flex;
                 flex-direction: column;
+                background-size: cover;
+                background-repeat: no-repeat;
                 background-image: url("../pages_data/illu_list/yukikaze.png");
             }
             .char-list-lv-star{
                 display: flex;
-                height: 84px;
+                height: 110px;
             }
             .char-lv{
                 font-family: resource;
-                width: 170px;
+                width: 240px;
                 padding-left: 2px;
+                font-size: 20px;
             }
             .char-star{
                 font-family: priconne;
                 width: 20px;
                 writing-mode: vertical-lr;
-                -webkit-text-stroke: 1px #ff3985;
+                -webkit-text-stroke: 1px hotpink;
                 display: flex;
                 background-color: #00000020;
+                padding-top: 2px;
                 /* flex-direction: column; */
             }
                 .char-star-ready{
                     color: goldenrod;
-                    text-shadow: 0 1px #ff3985, 1px 0 #ff3985, -1px 0 #ff3985, 0 -1px #ff3985;
+                    text-shadow: 0 1px #1E90FF, 1px 0 #1E90FF, -1px 0 #1E90FF, 0 -1px #1E90FF;
                 }
                 .char-star-notready{
-                    color: transparent;
+                    color: gray;
                 }
             .char-name{
-                font-family: priconne;
-                font-size: 14px;
-                height: 16px;
+                font-family: normalF;
+                font-size: 16px;
+                height: 20px;
+                line-height: 22px;
                 text-align: center;
                 overflow: hidden;
                 background-color: #00000080;
@@ -423,15 +445,16 @@ body{
     .char-detail-navi-button{
         width: 70px;
         height: 24px;
+        line-height: 24px;
         font-size: 18px;
-        background-color: #ff398580;
+        background-color: #1E90FF80;
         color: #fff;
         text-align: center;
         transition: 200ms;
-        font-family: priconne;
+        font-family: normalF;
     }
         .char-detail-navi-button:hover{
-            background-color: #ff3985;
+            background-color: #1E90FF;
         }
     .char-detail-navi-button:first-child{
         border-top-left-radius: 5px;
@@ -441,6 +464,9 @@ body{
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
     }
+    .char-detail-navi-button:not(:first-child){
+        border-left: 1px solid black;
+    }
 
 .char-detail-attr-illu{
     height: 300px;
@@ -449,7 +475,7 @@ body{
     user-select: none;
 }
     .char-detail-attr{
-        width: 450px;
+        width: 550px;
         height: calc(100% - 60px);
         display: flex;
         flex-direction: row;
@@ -459,11 +485,13 @@ body{
     }
         .char-detail-attr-item{
             height: 20px;
+            line-height: 20px;
             margin: 4px 0 5px 0;
         }
         .char-detail-attr-lvexp{
             font-family: resource;
             font-size: 20px;
+            line-height: 40px;
             width: 100%;
             display: flex;
             flex-direction: row;
@@ -483,15 +511,18 @@ body{
                 background: linear-gradient(to right,rgb(129, 185, 77),rgb(129, 185, 77) 40%, transparent 40%, transparent);
             }
         .char-detail-attr-short{
-            width: 125px;
-            margin-right: 20px;
+            width: 150px;
+            margin-right: 30px;
+            font-size: 17px;
+            height: 20px;
+            line-height: 20px;
             padding-bottom: 1px;
             border-bottom: #aaa solid 1px;
             display: flex;
             flex-direction: row;
         }
             .char-detail-attr-item-name{
-                width: 75px;
+                width: 100px;
             }
             .char-detail-attr-item-value{
                 width: 50px;
@@ -525,89 +556,145 @@ body{
                 }
     .char-detail-illu{
         background: url("../pages_data/illu/xili_h.png");
-        width: calc(100% - 450px);
+        width: 300px;
         background-size: cover;
     }
         .char-detail-name{
+            height: 20px;
+            line-height: 20px;
             width: 100%;
             text-align: center;
             background-color: #00000020;
         }
 
 .char-reinforce{
-    height: 300px;
+    /* height: 300px; */
 }
-    .char-detail-reinforce-lvexp{
+    .char-reinforce-attrs{
+        width: 100%;
         display: flex;
-        flex-direction: row;
-        font-family: resource;
+        flex-direction: column;
+        font-family: resource, normalF;
         font-size: 20px;
-        height: 25px;
+        height: 180px;
         margin-bottom: 10px;
     }
-        .char-detail-reinforce-lv{
-            width: 50px;
-        }
-        .char-detail-reinforce-exp{
-            width: 300px;
+        .char-reinforce-attr{
+            display: flex;
+            flex-direction: row;
             font-size: 20px;
-            padding-left: 10px;
+            height: 25px;
+            margin-bottom: 5px;
+            align-items: flex-end;
+        }
+        .char-reinforce-attr-name{
+            line-height: 15px;
+            width: 100px;
+        }
+        .char-reinforce-attr-value{
+            height: 15px;
+            width: 400px;
+            line-height: 20px;
             background: linear-gradient(to right,rgb(129, 185, 77),rgb(129, 185, 77) 40%, rgba(129, 185, 77, 0.5) 40%, rgba(129, 185, 77, 0.5));
         }
-    .char-detail-reinforce-items{
-        height: 200px;
-    }
-    .char-detail-reinforce-item{
-        /* height: 50px; */
+        .char-reinforce-attr-max{
+            line-height: 5px;
+            width: 90px;
+            margin-left: 10px;
+        }
+    .char-reinforce-item{
         display: flex;
         flex-direction: row;
-        font-family: priconne;
-        border-radius: 5px;
-        transition: 200ms;
-        padding: 2px 5px;
-        margin-bottom: 5px;
+        font-family: normalF;
     }
-        .char-detail-reinforce-item:hover{
-            box-shadow: 0 0 1px 1px #ff3985;
+        .char-reinforce-select-char{
+            width: 70px;
+            height: 70px;
+            margin-right: 20px;
+            background-image: url("../pages_data/illu_head/yukikaze.png");
+            background-repeat: no-repeat;
+            background-size: cover;
         }
-        .char-detail-reinforce-item-img{
+        .char-reinforce-add-attrs{
+            width: 480px;
+            display: flex;
+            flex-direction: row;
+        }
+            .char-reinforce-add-attr{
+                width: 140px;
+                margin-right: 20px;
+                height: 25px;
+                line-height: 25px;
+                font-size: 18px;
+            }
+        .char-reinforce-item:hover{
+            box-shadow: 0 0 1px 1px #1E90FF;
+        }
+        .char-reinforce-item-img{
             height: 50px;
             width: 50px;
             background-image: url("../pages_data/item/activity_tickets.png");
             background-repeat: no-repeat;
             background-size: cover;
         }
-        .char-detail-reinforce-item-intro{
+        .char-reinforce-item-intro{
             width: 300px;
+            line-height: 50px;
+            margin-left: 10px;
         }
-        .char-detail-reinforce-item-use{
+        .char-reinforce-item-use{
             height: 24px;
+            line-height: 24px;
             margin: auto 0;
             border: solid rgb(93, 177, 255) 1px;
             padding: 2px 10px;
             border-radius: 5px;
             transition: 200ms;
         }
-            .char-detail-reinforce-item-use:hover{
+            .char-reinforce-item-use:hover{
                 background-color: rgba(93, 177, 255, 0.5);
             }
 
 .char-equip{
-    height: 300px;
-    font-family: priconne;
+    /* height: 300px; */
+    font-family: normalF;
 }
     .char-equip-list{
-        height: 54px;
-        width: 450px;
+        height: 52px;
+        /* width: 450px; */
+        display: flex;
+        flex-direction: row;
     }
+        .char-equip-block{
+            border: solid 1px black;
+            display: flex;
+            flex-direction: row;
+        }
+        /* .char-equip-block div{
+            pointer-events: none;
+        } */
         .char-equip-image{
             height: 50px;
             width: 50px;
-            border: solid 2px;
-            background-image: url("../pages_data/equip/mogami-155.png");
+            /* border-right: solid 1px; */
+            background-image: url("../pages_data/equip/noequip.png");
             background-repeat: no-repeat;
-            background-size: cover;
+            background-size:cover;
         }
+        .char-equip-brief{
+            width: 0;
+            transition: 200ms;
+            overflow: hidden;
+            font-size: 14px;
+            line-height: 14px;
+        }
+        .char-equip-brief.active{
+            width: 180px;
+            padding: 1px 2px;
+        }
+            .char-equip-brief div{
+                width: 180px;
+            }
     .char-equip-detail-choose{
         margin-top: 5px;
         display: flex;
@@ -615,7 +702,7 @@ body{
     }
         .char-equip-detail-action{
             width: 100px;
-            color: #ff3985;
+            color: #1E90FF;
             background-color: #aaa;
             text-align: center;
         }
@@ -631,7 +718,7 @@ body{
     .char-equip-detail{
         display: flex;
         flex-direction: row;
-        width: 450px;
+        width: 550px;
     }
     .char-equip-attrs, .char-equip-reinforce{
         width: 0;
@@ -639,22 +726,28 @@ body{
         transition: 200ms;
         padding-top: 5px;
     }
+    .char-equip-attrs{
+        display: flex;
+        flex-wrap: wrap;
+    }
         .char-equip-attrs.active, .char-equip-reinforce.active{
-            width: 450px;
+            width: 550px;
         }
         .char-equip-attr{
-            width: 140px;
-            height: 30px;
+            width: 220px;
+            height: 22px;
+            line-height: 22px;
+            font-size: 16px;
             margin-right: 10px;
             border-bottom: 1px solid black;
             padding-bottom: 2px;
             display: flex;
         }
             .char-equip-attrname{
-                width: 60px;
+                width: 100px;
             }
             .char-equip-value{
-                width: 80px;
+                width: 120px;
                 text-align: right;
             }
         .char-equip-reinforce-intro{
@@ -667,7 +760,7 @@ body{
             font-size: 20px;
         }
             .char-equip-star-big{
-                color: #ff3985;
+                color: #1E90FF;
                 -webkit-text-stroke: 1px black;
             }
             .char-equip-star{
@@ -689,7 +782,7 @@ body{
 
 
 .map-select{
-    height: 300px;
+    height: 400px;
 }
     .map-select-map{
         display: flex;
@@ -697,14 +790,14 @@ body{
     }
         .map-select-mapimage{
             width: calc(100% - 10px);
-            height: 150px;
+            height: 250px;
             margin: 0 5px;
             background-image: url("../pages_data/map/map_1.jpeg");
             background-repeat: no-repeat;
             background-position: center;
         }
     .map-select-selecter{
-        margin: 5px 0 0 5px;
+        margin: 15px 0 0 5px;
     }
         .map-select-chapter-select{
             display: flex;
@@ -717,7 +810,7 @@ body{
                 transition: 200ms;
             }
                 .map-select-prev:hover, .map-select-next:hover{
-                    background-color: #ff398580;
+                    background-color: #1E90FF80;
                 }
                 .map-select-prev.disable, .map-select-next.disable{
                     color: gray;
@@ -737,15 +830,16 @@ body{
             .map-select-subchapter{
                 width: 150px;
                 height: 24px;
+                line-height: 24px;
                 text-align: center;
                 margin-right: 5px;
                 margin-bottom: 2px;
-                border: #ff3985 solid 1px;
+                border: #1E90FF solid 1px;
                 border-radius: 5px;
                 transition: 200ms;
             }
                 .map-select-subchapter:hover{
-                    background-color: #ff398580;
+                    background-color: #1E90FF80;
                 }
 
 .map-detail{
@@ -758,10 +852,11 @@ body{
     }
         .map-detail-msg{
             width: 50%;
+            line-height: 24px;
             display: flex;
             flex-direction: column;
             align-content: flex-start;
-            font-family: priconne;
+            font-family: normalF;
         }
             .map-detail-msg-item{
                 height: 24px;
@@ -795,7 +890,7 @@ body{
                 transition: 200ms;
             }
                 .map-detail-image:hover{
-                    box-shadow: 0 0 3px 3px #ff3985;
+                    box-shadow: 0 0 3px 3px #1E90FF;
                     filter: brightness(1.2);
                 }
                 .map-detail-image-battlestart{
@@ -825,7 +920,7 @@ body{
                 .map-detail-loot-title{
                     height: 100%;
                     writing-mode: vertical-lr;
-                    font-family: priconne;
+                    font-family: normalF;
                     font-size: 16px;
                     width: 20px;
                     /* margin-left: -10px; */
@@ -837,12 +932,13 @@ body{
     .map-grid-container{
         margin: 5px auto;
         position: relative;
+        text-align: center;
     }
         .map-grid-map{
-            width: 650px;
+            width: 800px;
             height: 400px;
             box-shadow: 0 0 4px rgba(0,0,0,0.5);
-            margin-left: calc(50% - 325px);
+            /* margin-left: calc(50% - 325px); */
             margin-top: 5px;
             margin-bottom: 5px;
             transition: 200ms;
@@ -851,7 +947,7 @@ body{
             background-size: cover;
         }
             .map-grid-map:hover{
-                box-shadow: 0 0 6px #ff3985;
+                box-shadow: 0 0 6px #1E90FF;
             }
         .map-grid-player{
             position: absolute;
@@ -863,7 +959,7 @@ body{
             background-image: url("../pages_data/map/player.png");
             background-repeat: no-repeat;
             background-size: cover;
-            margin: 5px 0 0 calc(50% - 325px);
+            margin: 5px 0 0 calc(50% - 400px);
             pointer-events: none;
             background-color: rgba(127, 255, 0, 0.5);
         }
@@ -873,10 +969,11 @@ body{
     }
         .map-grid-action-item{
             width: 100px;
-            font-family: priconne;
+            font-family: normalF;
             height: 28px;
-            font-size: 20px;
-            border: #ff3985 solid 1px;
+            line-height: 28px;
+            font-size: 18px;
+            border: #1E90FF solid 1px;
             border-radius: 5px;
             transition: 200ms;
             margin: 5px 10px 0 0;
@@ -884,21 +981,22 @@ body{
             padding: auto;
         }
             .map-grid-action-item:hover{
-                background-color: #ff398580;
+                background-color: #1E90FF80;
             }
             .map-grid-battle{
                 color: orange;
-                -webkit-text-stroke: 1px black;
+                /* -webkit-text-stroke: 1px black; */
                 margin-right: 50px;
+                font-size: 20px;
             }
 
 .battle-scene{
     height: 600px;
 }
     .battle-container{
-        width: 680px;
+        text-align: center;
         margin: 5px 0;
-        margin-left: calc(50% - 325px);
+        /* margin-left: calc(50% - 325px); */
     }
     .battle-container .battle-canvas{
         box-shadow: 0 0 4px rgba(0,0,0,0.5);
@@ -908,26 +1006,28 @@ body{
         transition: 200ms;
     }
         .battle-container .battle-canvas:hover{
-            box-shadow: 0 0 6px #ff3985;
+            box-shadow: 0 0 6px #1E90FF;
         }
     .battle-order-container{
-        margin: 5px;
+        margin: 5px auto;
         display: flex;
         flex-direction: row;
+        width: 800px;
     }
         .battle-character-order-list{
-            width: 450px;
+            width: 700px;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             align-content: flex-start;
         }
             .battle-character-order-block{
-                width: 200px;
-                height: 50px;
+                width: 100px;
+                height: 180px;
+                text-align: center;
                 margin-right: 10px;
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
                 background-color: transparent;
                 transition: 200ms;
                 padding: 5px;
@@ -935,12 +1035,13 @@ body{
                 overflow: hidden;
             }
                 .battle-character-order-block:hover{
-                    background-color: rgba(93, 177, 255, 0.5);
+                    background-color: #1E90FF80;
                 }
                 .battle-character-image{
-                    height: 50px;
-                    width: 50px;
-                    margin-right: 5px;
+                    height: 60px;
+                    width: 60px;
+                    margin: 2px auto;
+                    margin-bottom: 10px;
                     background-image: url("../pages_data/illu_head/yukikaze.png");
                     background-repeat: no-repeat;
                     background-size: cover;
@@ -952,13 +1053,13 @@ body{
 
                 }
                     .battle-character-state .battle-character-name{
-                        font-family: priconne;
+                        font-family: normalF;
                         font-size: 16px;
                         height: 20px;
                     }
                     .battle-character-state .battle-character-hp{
                         height: 11px;
-                        width: 140px;
+                        width: 100px;
                         margin: 2px 0;
                         /* background-color: mediumseagreen; */
                         background: linear-gradient(to right,mediumseagreen,mediumseagreen 100%, transparent 100%, transparent);
@@ -968,7 +1069,7 @@ body{
                     }
                     .battle-character-state .battle-character-tp{
                         height: 11px;
-                        width: 140px;
+                        width: 100px;
                         /* background-color: cornflowerblue; */
                         background: linear-gradient(to right,cornflowerblue,cornflowerblue 0%, transparent 0%, transparent);
                         border: solid 2px royalblue;
@@ -978,7 +1079,7 @@ body{
         .battle-overall-order-list{
             border-left: solid 2px gray;
             height: 180px;
-            width: 200px;
+            width: 50px;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
@@ -991,16 +1092,16 @@ body{
                 background-repeat: no-repeat;
                 background-size: cover;
                 margin-right: 5px;
-                margin-bottom: 20px;
+                margin-bottom: 2px;
                 border-radius: 5px;
                 border: solid 2px gray;
                 transition: 200ms;
             }
                 .battle-overall-order-list .order-item:hover{
-                    background-color: #ff3985;
+                    background-color: #1E90FF;
                 }
             .battle-overall-order-list .order-item.active{
-                background-color: #ff398580;
+                background-color: #1E90FF80;
             }
             .battle-overall-order-list .order-auto{
                 background-image: url("../pages_data/battle/auto.png");

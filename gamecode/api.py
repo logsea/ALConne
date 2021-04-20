@@ -10,6 +10,9 @@ import main as gamemain
 import game_text.exchanger as retText
 import sys
 
+import io
+sys.stdout = io.TextIOWrapper(sys.stdout.detach(),encoding='utf-8')
+
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
 
@@ -18,19 +21,23 @@ class GameMessagePass:
         msg = json.loads(res)
         print(msg)
         code = msg["type"]
+        receiveMsg = msg["message"] if "message" in msg else None
         action, code = code.split('-', 1)
         if(action == "script"):
             ret = retText.ReturnText(code)
         elif(action == "main"):
             ret = gamemain.ret_main_msg(code)
         elif(action == "chardetail"):
-            ret = gamemain.ret_chardetail_msg(code)
+            ret = gamemain.ret_chardetail_msg(code, receiveMsg)
         elif(action == "battle"):
             ret = gamemain.ret_battle_msg(code, msg)
+        elif(action == "item"):
+            ret = gamemain.ret_item_msg(code, msg["message"])
         else:
             ret = {
                 "type":"error"
             }
+        print(ret)
         return json.dumps(ret)
 
 def main():

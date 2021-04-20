@@ -16,7 +16,7 @@ class GameMap:
         _msg = copy.deepcopy(msg)
         self.mapSize = _msg["mapsize"]
         self.enemyLevel = _msg["enemylevel"]
-        self.dropitem = _msg["dropitem"]
+        # self.dropitem = _msg["dropitem"]
         self.mapdrop = _msg["mapdrop"]
         self.occurenemy = _msg["occurenemy"]
         self.enemyAppearControl = _msg["grid"]["enemy"]
@@ -45,7 +45,7 @@ class GameMap:
         self.playerPosList = msg["startpos"]
         return msg
 
-    def get_enemy_by_pos(self, enemyPos):
+    def get_enemy_by_pos(self, enemyPos, gameMap):
         for e in gameMap.enemyPosList:
             if(e["pos"] == enemyPos):
                 enemyFleet = gameMap.enemyGroups[e["enemy"]]

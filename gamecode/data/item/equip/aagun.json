@@ -4,35 +4,51 @@
             "id":3000001,
             "name":"单装25mm防空机炮",
             "desc":"从陆军用大口径机枪改造的舰用版本，射高虽然足够但是没有良好的瞄准具。",
+            "origin":3,
             "rarity":1,
             "type":22,
             "lv":1,
             "attr":{
-                "aa":30,
-                "hp":20
+                "damage":10,
+                "filling":2000,
+                "aa":15,
+                "dmgeffect":1.0,
+                "firerange":100,
+                "dmgrange":0
             }
         },
         {
             "id":3000002,
             "name":"四联装7.62mm防空机枪",
             "desc":"非常小口径的近程防空炮，优点是射速极快。",
+            "origin":1,
             "rarity":1,
             "type":21,
             "lv":1,
             "attr":{
-                "aa":5,
-                "reload":15
+                "damage":6,
+                "filling":500,
+                "aa":15,
+                "dmgeffect":1.0,
+                "firerange":60,
+                "dmgrange":0
             }
         },
         {
             "id":3000003,
             "name":"双联装20mm机枪",
             "desc":"一种用于高仰角攻击的武器，射速虽然不快，但是有很强的穿透力。",
+            "origin":1,
             "rarity":1,
             "type":22,
             "lv":1,
             "attr":{
-                "aa":50
+                "damage":15,
+                "filling":2000,
+                "aa":15,
+                "dmgeffect":1.0,
+                "firerange":60,
+                "dmgrange":0
             }
         }
     ]

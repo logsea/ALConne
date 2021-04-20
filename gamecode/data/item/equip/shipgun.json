@@ -4,46 +4,203 @@
             "id":1000001,
             "name":"单装127mm/38倍径主炮 原始型",
             "desc":"非常早期型的驱逐舰用主炮，也被用作当时战列舰的甲板炮，射速较快。",
+            "origin":1,
             "rarity":1,
             "type":1,
             "lv":1,
             "attr":{
-                "firepower":10,
-                "reload":3
+                "damage":2,
+                "shellnum":1,
+                "round":2,
+                "filling":4000,
+                "firepower":5,
+                "dmgfactor":[1.2, 0.8, 0.5, 0.1],
+                "dmgeffect":1.0,
+                "firerange":50,
+                "fireangle":360,
+                "dmgrange":0,
+                "spreadrange":10
+            },
+            "attrenhance":{
+                "damage":[0,1,2,3],
+                "firepower":[7,10,12,15]
             }
         },
         {
             "id":1000002,
-            "name":"单装128mm/35倍径SKC主炮 原始型",
-            "desc":"铁血制造的高穿深驱逐舰主炮，其装药较高导致穿深很足。",
-            "rarity":1,
+            "name":"单装105mm/45倍径SKC主炮 原始型",
+            "desc":"铁血制造的高穿深驱逐舰主炮，其发射药较多导致穿深很足。",
+            "origin":1,
+            "rarity":2,
             "type":1,
             "lv":1,
             "attr":{
-                "firepower":17
+                "damage":3,
+                "shellnum":1,
+                "round":2,
+                "filling":6000,
+                "firepower":5,
+                "dmgfactor":[1.2, 1.0, 0.3, 0.15],
+                "dmgeffect":1.0,
+                "firerange":50,
+                "fireangle":360,
+                "dmgrange":0,
+                "spreadrange":10
+                
             }
         },
         {
             "id":1000003,
             "name":"双联装127mm/42倍径主炮 试制型",
             "desc":"早期的双联装驱逐舰主炮，所以装药较小，但是因为是双联装结构，其投射量远超单装主炮，所以命中率会高很多。",
+            "origin":1,
             "rarity":1,
             "type":1,
             "lv":1,
             "attr":{
-                "firepower":12,
-                "aim":5
+                "damage":2,
+                "shellnum":2,
+                "round":2,
+                "filling":5500,
+                "firepower":5,
+                "dmgfactor":[1.2, 0.8, 0.5, 0.1],
+                "dmgeffect":1.0,
+                "firerange":50,
+                "fireangle":360,
+                "dmgrange":0,
+                "spreadrange":10
             }
         },
         {
             "id":1000004,
-            "name":"单装406mm/35倍径主炮 试制型",
-            "desc":"在14寸炮的时代验证大口径主炮思路的装备，相对于前者大幅提升了穿甲效果和毁伤能力。",
+            "name":"双联装305mm/35倍径主炮 试制型",
+            "desc":"性能良好的12寸主炮，拥有着稳定的输出效果。",
+            "origin":1,
             "rarity":1,
-            "type":6,
+            "type":5,
             "lv":1,
             "attr":{
-                "firepower":40
+                "damage":20,
+                "shellnum":2,
+                "round":1,
+                "filling":30000,
+                "firepower":15,
+                "dmgfactor":[0.3, 1.2, 1.0, 0.6],
+                "dmgeffect":1.0,
+                "firerange":200,
+                "fireangle":180,
+                "dmgrange":20,
+                "spreadrange":10
+            }
+        },
+        {
+            "id":1000005,
+            "name":"双联装280mm/32倍径主炮",
+            "desc":"旧式的11寸主炮，性能稳定，但是对新锐战舰的击穿能力不足。",
+            "origin":1,
+            "rarity":1,
+            "type":5,
+            "lv":1,
+            "attr":{
+                "damage":16,
+                "shellnum":2,
+                "round":1,
+                "filling":26000,
+                "firepower":15,
+                "dmgfactor":[0.5, 1.4, 0.8, 0.5],
+                "dmgeffect":1.0,
+                "firerange":200,
+                "fireangle":180,
+                "dmgrange":20,
+                "spreadrange":10
+            }
+        },
+        {
+            "id":1000006,
+            "name":"单装152mm/53倍径主炮",
+            "desc":"老式的6寸舰炮，其拥有较好的射速，但是弹道较差。",
+            "origin":1,
+            "rarity":1,
+            "type":2,
+            "lv":1,
+            "attr":{
+                "damage":6,
+                "shellnum":1,
+                "round":2,
+                "filling":7000,
+                "firepower":15,
+                "dmgfactor":[0.8, 1.0, 0.4, 0.25],
+                "dmgeffect":1.0,
+                "firerange":80,
+                "fireangle":270,
+                "dmgrange":0,
+                "spreadrange":15
+            }
+        },
+        {
+            "id":1000007,
+            "name":"双联装152mm/53倍径主炮",
+            "desc":"老式6寸舰炮的双联装版本，由于装填结构的调整，其装填速度不高。",
+            "origin":1,
+            "rarity":2,
+            "type":2,
+            "lv":1,
+            "attr":{
+                "damage":6,
+                "shellnum":2,
+                "round":2,
+                "filling":10000,
+                "firepower":15,
+                "dmgfactor":[0.8, 1.0, 0.4, 0.25],
+                "dmgeffect":1.0,
+                "firerange":80,
+                "fireangle":270,
+                "dmgrange":0,
+                "spreadrange":15
+            }
+        },
+        {
+            "id":1000008,
+            "name":"双联装203mm/55倍径主炮",
+            "desc":"现代重巡洋舰主炮的初始型，其装备的重弹弹道较高抛，但是有较高的穿甲能力，在远距离有绕过重点防御部位的能力。",
+            "origin":1,
+            "rarity":1,
+            "type":3,
+            "lv":1,
+            "attr":{
+                "damage":10,
+                "shellnum":2,
+                "round":2,
+                "filling":12000,
+                "firepower":15,
+                "dmgfactor":[0.8, 1.0, 0.4, 0.25],
+                "dmgeffect":1.0,
+                "firerange":80,
+                "fireangle":270,
+                "dmgrange":0,
+                "spreadrange":15
+            }
+        },
+        {
+            "id":1000009,
+            "name":"三联装203mm/55倍径主炮",
+            "desc":"改装后的重巡洋舰主炮。",
+            "origin":1,
+            "rarity":2,
+            "type":3,
+            "lv":1,
+            "attr":{
+                "damage":6,
+                "shellnum":3,
+                "round":2,
+                "filling":15000,
+                "firepower":15,
+                "dmgfactor":[0.8, 1.0, 0.4, 0.25],
+                "dmgeffect":1.0,
+                "firerange":80,
+                "fireangle":270,
+                "dmgrange":0,
+                "spreadrange":15
             }
         }
     ]

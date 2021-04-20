@@ -34,7 +34,6 @@ class Player:
             ch["rarity"] = char["rarity"]
             ch["refine"] = char["refine"]
             ch["equip"] = char["equip"]
-            ch["slotenhence"] = char["slotenhence"]
             ch["skill"] = char["skill"]
             ch["unique_equip"] = char["unique_equip"]
             if("unique_equip_detail" in char):
@@ -53,14 +52,15 @@ class Player:
             self.fleet.append(fl)
 
         items = save["item"]
+        # print(items)
         self.item = {}
         self.item["equip"] = {}
         for item in items["equip"]:
             it = {
                 "id":item["id"],
-                "number":item["number"]
+                "enhance":item["enhance"]
             }
-            self.item["equip"][it["id"]] = it
+            self.item["equip"][item["id"]] = it
 
         self.item["normal"] = {}
         for item in items["normal"]:
@@ -86,7 +86,18 @@ class Player:
             }
             self.item["mentalunit"][it["id"]] = it
 
+
     def ret_msg(self, cate, id = None):
+        #TODO: 把大类信息返回的设置放到单独的函数中
+        """ 这里返回的是一个大页的信息
+
+        Args:
+            cate (string): [description]
+            id (int, optional): [description]. Defaults to None.
+
+        Returns:
+            object: 返回的信息，后面将会处理为JSON返回
+        """
         ret = {}
         if(cate == "mainpage"):
             ret["name"] = self.name
@@ -132,12 +143,50 @@ class Player:
 
     def ret_detail_msg(self, action, charid):
         ret = {}
+        char = self.char[int(charid)]
+        ret["id"] = char["id"]
         if(action == "reinforce"):
-            ret["id"] = self.char[id]
             ret["level"] = char["level"]
             ret["exp"] = char["exp"]
             ret["expmax"] = lmt.char_exp_need[char["level"]]
-        return "detailreinforce", ret
+            return "detailreinforce", ret
+        if(action == "equip"):
+            ret["equip"] = []
+            equipable = db.get_char_msg(char["id"], "equipable")
+            for i in range(db.equipCount):
+                equip = char["equip"][i]
+                newequip = {}
+                newequip["equipable"] = equipable[i]
+                if(equip == 0):
+                    newequip["id"] = 0
+                else:
+                    newequip["id"] = equip["id"]
+                    newequip["enhance"] = equip["enhance"]
+                    newequip["attr"] = db.get_equip_msg(equip["id"], equip["enhance"])
+                ret["equip"].append(newequip)
+            return "detailequip", ret
+
+    def receive_detail_msg(self, action, message):
+        if(action == "getequip"):
+            if(message["prevEquipChar"] == None):
+                # 三种情况不更改角色装备，没有该装备，该装备强化等级上限低于指定值
+                if((message["equipID"] not in self.item["equip"]) or len(self.item["equip"][message["equipID"]]) <= message["enhance"] or self.item["equip"][message["equipID"]][message["enhance"]] == 0):
+                    return "getequip", {"success": False}
+                self.item["equip"][message["equipID"]][message["enhance"]] -= 1
+                if(self.char[message["char"]]["equip"][message["slot"]] != 0):
+                    slot = self.char[message["char"]]["equip"][message["slot"]]
+                    self.item["equip"][slot["id"]][slot["enhance"]] += 1
+                self.char[message["char"]]["equip"][message["slot"]] == {"id": message["equipID"], "enhance": message["enhance"]}
+                return "getequip", {"success": True}
+            else:
+                # TODO: 只需要检查换装备的角色有没有这装备就行了
+                for i in range(len(self.char[message["prevEquipChar"]]["equip"])):
+                    equip = self.char[message["prevEquipChar"]]["equip"][i]
+                    if(equip != 0 and equip["id"] == message["equipID"]):
+                        self.char[message["char"]]["equip"][message["slot"]] = equip
+                        self.char[message["prevEquipChar"]]["equip"][i] = 0
+                        return "getequip", {"success": True}
+                return "getequip", {"success": False}
 
     def char_get_attr(self, id):
         attr = {}
@@ -146,6 +195,25 @@ class Player:
         for attr_name in db.attr:
             attr[attr_name] = char_detail.attrlv(attr_name, char["level"])
         return attr
+
+    def equipWithCategory(self, categories):
+        """给定需要的装备类型，返回仓库中有的装备
+
+        Args:
+            categories (list): 一般是整形组成的数组，如果里面有all就说明是从物品栏中检索，就会返回所有的。
+
+        Returns:
+            object: 包含所有装备的JSON
+        """
+        ret = []
+        for equipID in self.item["equip"]:
+            equip = self.item["equip"][equipID]
+            if(db.item["equip"][equipID]["type"] in categories or "all" in categories):
+                for enhanceNum in range(len(equip["enhance"])):
+                    if(equip["enhance"][enhanceNum] != 0):
+                        ret.append({"id":equip["id"], "enhance":enhanceNum, "number":equip["enhance"][enhanceNum], "attrs":db.get_equip_attr(equip["id"], enhanceNum)})
+                        print(ret)
+        return "equipCategory", ret
 
 
     def char_message(self, charid):

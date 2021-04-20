@@ -15,40 +15,19 @@ class Character():
             }
 
     def attrlv(self, attr, lv):
-        if(attr == "hp"):
-            return self.hp + (int)((self.hp100 - self.hp) * lv / 100)
-        elif(attr == "firepower"):
-            return self.firepower
-        elif(attr == "torpedo"):
-            return self.torpedo
-        elif(attr == "planebomb"):
-            return self.planebomb
-        elif(attr == "planetorp"):
-            return self.planetorp
-        elif(attr == "planeaa"):
-            return self.planeaa
-        elif(attr == "aim"):
-            return self.aim
-        elif(attr == "flexibility"):
-            return self.flexibility
-        elif(attr == "torpflex"):
-            return self.torpflex
-        elif(attr == "aa"):
-            return self.aa
-        elif(attr == "armor"):
-            return self.armor
-        elif(attr == "antitorp"):
-            return self.antitorp
-        elif(attr == "antiair"):
-            return self.antiair
-        elif(attr == "reload"):
-            return self.reload
-        elif(attr == "tpreload"):
-            return self.tpreload
-        elif(attr == "repair"):
-            return self.repair
-        elif(attr == "fastrepair"):
-            return self.fastrepair
+        f_attr = {
+            "hp"            : self.hp + (int)((self.hp100 - self.hp) * lv / 100),
+            "firepower"     : self.firepower, 
+            "torpedo"       : self.torpedo, 
+            "plane"         : self.plane, 
+            "aim"           : self.aim, 
+            "flexibility"   : self.flexibility, 
+            "aa"            : self.aa, 
+            "armor"         : self.armor, 
+            "reload"        : self.reload, 
+            "repair"        : self.repair, 
+        }
+        return f_attr[attr]
 
     def loadData(self, data):
         self.id = data["id"]
@@ -77,20 +56,10 @@ class Character():
         else:
             self.torpedo = 0
 
-        if('planebomb' in attr):
-            self.planebomb = attr["planebomb"]
+        if('plane' in attr):
+            self.plane = attr["plane"]
         else:
-            self.planebomb = 0
-
-        if('planetorp' in attr):
-            self.planetorp = attr["planetorp"]
-        else:
-            self.planetorp = 0
-
-        if('planeaa' in attr):
-            self.planeaa = attr["planeaa"]
-        else:
-            self.planeaa = 0
+            self.plane = 0
 
         self.aim = attr["aim"]
         

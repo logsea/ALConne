@@ -1,0 +1,99 @@
+主界面部分
+
+API No.1
+作用：返回主界面
+
+请求：
+{
+    'type':'main-mainpage'
+}
+
+响应：
+{
+    'type':"main",
+    'msg':{
+        'name':(str),
+        'level':(int),
+        'exp':(int),
+        'expmax':(int),
+        'money':(int),
+        'moneymax':(int),
+        'diamond':(int),
+        'oil':(int),
+        'oilmax':(int),
+        'secretary':(str),
+    }
+}
+
+
+
+API No.2
+作用：返回角色列表
+
+请求：
+{
+    'type':'main-charlist'
+}
+
+响应：
+{
+    'type':"charlist",
+    'msg':{
+        [{
+            'id': (int), 
+            'level': (int), 
+            'star': (int), 
+            'rarity': (int), 
+            'refine': (int), 
+            'name': (str)
+        ]
+    }
+}
+
+API Series No.1xx
+所有对角色的操作，大部分用chardetail做前缀
+
+
+
+API No.101
+作用：返回角色列表
+场景：主界面点击角色列表，或其子场景点击返回
+
+请求：
+{
+    'type':'main-charlist'
+}
+
+响应：
+{
+    'type':"charlist",
+    'msg':{
+        [{
+            'id': (int), 
+            'level': (int), 
+            'star': (int), 
+            'rarity': (int), 
+            'refine': (int), 
+            'name': (str)
+        }]
+    }
+}
+
+
+
+API No.102
+作用：返回角色详情-概述
+场景：角色选择界面点击相应角色
+
+请求：
+{
+    'type':''
+}
+
+响应：
+{
+    'type':"",
+    'msg':{
+        
+    }
+}

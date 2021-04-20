@@ -77,7 +77,7 @@ def mapgrid_next_msg():
 def init_battle_msg(gameMap, enemyPos, gameBattle):
     msg = {}
     enemyFleet = None
-    enemyFleet = gameMap.get_enemy_by_pos(enemyPos)
+    enemyFleet = gameMap.get_enemy_by_pos(enemyPos, gameMap)
     # 0 present Self Fleet No.0, the default fleet, need to modify
     gameBattle.set_battle_msg(gameMap.playerFleet[0], enemyFleet, db)
     msg["player"] = gameBattle.get_player_fleet_msg(player, 0)
@@ -118,8 +118,8 @@ def ret_msg(cate, cate_id = None):
     elif(cate == "battlescene"):
         pass
 
-def ret_msg_and_setup_gridmap(cate, cate_id, gameMap, playerFleet):
-    areaid, mapid = cate_id.split("-")
+def ret_msg_and_setup_gridmap(cate, areaid, mapid, gameMap, playerFleet):
+    # areaid, mapid = cate_id.split("-")
     msg = mapgrid_msg(areaid, mapid, gameMap, playerFleet)
     return "gridmapstart", msg
 

@@ -39,14 +39,14 @@ const createPyProc = () => {
     let port = '' + selectPort()
   
     if (pythonPackaged()) {
-        _Python_Proc = require('child_process').execFile(script, [port])
+        _Python_Proc = require('child_process').execFile(script, [port]);
     } else {
-        console.log(script)
-        _Python_Proc = require('child_process').spawn('python', [script, port], {
+        console.log(script);
+        _Python_Proc = require('child_process').spawn('python', [ "-u" , script, port], {
             cwd: process.cwd(),
             detached: true,
             stdio: "inherit"
-          })
+          });
     }
    
     if (_Python_Proc != null) {
@@ -70,7 +70,7 @@ Start Main Process
 */
 function createWindow() {
     let win = new BrowserWindow({
-        width: 800,
+        width: 1000,
         height: 800,
         resizable:false,
         webPreferences:{

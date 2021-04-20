@@ -15,6 +15,7 @@
         "aim":85,
         "flexibility":42,
         "torpflex":60,
+        "plane": 0,
         "aa":329,
         "armor":61,
         "antitorp":35,

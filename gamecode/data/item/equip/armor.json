@@ -8,8 +8,9 @@
             "type":42,
             "lv":1,
             "attr":{
-                "armor":6,
-                "flexibility":30
+                "hp":200,
+                "flexibility":30,
+                "repair":10
             }
         },
         {
@@ -20,20 +21,19 @@
             "type":42,
             "lv":1,
             "attr":{
-                "armor":12,
+                "hp":400,
                 "flexibility":5
             }
         },
         {
             "id":5000003,
-            "name":"16mm-Mk.7重型船壳",
+            "name":"19mm-Mk.7重型船壳",
             "desc":"早期驱逐舰本身轮机出力不足，使用重型装甲可能会造成航速过慢，但是这也是试制装备的一种。",
             "rarity":1,
-            "type":44,
+            "type":42,
             "lv":1,
             "attr":{
-                "armor":20,
-                "flexibility":-10
+                "hp":500
             }
         },
         {
@@ -44,7 +44,8 @@
             "type":44,
             "lv":1,
             "attr":{
-                "armor":35
+                "hp":1000,
+                "repair":5
             }
         }
     ]

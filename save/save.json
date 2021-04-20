@@ -21,13 +21,20 @@
             {"id":15, "number":2000}
         ],
         "equip":[
-            {"id":1000001, "number":5},
-            {"id":1000002, "number":5},
-            {"id":1000003, "number":5},
-            {"id":2000001, "number":5},
-            {"id":2000002, "number":5},
-            {"id":2000003, "number":5},
-            {"id":1010001, "number":1}
+            {"id":1000001, "enhance":[2, 0, 0, 1]},
+            {"id":1000002, "enhance":[2, 0, 0, 0]},
+            {"id":1000003, "enhance":[2, 0, 0, 0]},
+            {"id":1000004, "enhance":[2, 0, 0, 0]},
+            {"id":1000005, "enhance":[2, 0, 0, 0]},
+            {"id":1000006, "enhance":[2, 0, 0, 0]},
+            {"id":1000007, "enhance":[2, 0, 0, 0]},
+            {"id":1000008, "enhance":[2, 0, 0, 0]},
+            {"id":1000009, "enhance":[2, 0, 0, 0]},
+            {"id":2000001, "enhance":[2, 0, 0, 0]},
+            {"id":2000002, "enhance":[2, 0, 0, 0]},
+            {"id":2000003, "enhance":[2, 0, 0, 0]},
+            {"id":3000001, "enhance":[2, 0, 0, 0]},
+            {"id":3000002, "enhance":[2, 0, 0, 0]}
         ],
         "blueprint":[
 
@@ -45,10 +52,12 @@
             "rarity":1,
             "refine":0,
             "equip":[
-                0, 0, 0, 0, 0, 0
-            ],
-            "slotenhence":[
-                0, 0, 0, 0, 0, 0
+                0, 
+                0, 
+                0, 
+                0, 
+                0, 
+                0
             ],
             "skill":[
                 1, 0, 0, 0, 0
@@ -57,21 +66,7 @@
                 0, 0, 0
             ],
             "unique_equip_detail":[
-                {
-                    "level":0,
-                    "refine":0,
-                    "enhance":0
-                },
-                {
-                    "level":0,
-                    "refine":0,
-                    "enhance":0
-                },
-                {
-                    "level":0,
-                    "refine":0,
-                    "enhance":0
-                }
+                0, 0, 0
             ]
         },
         {
@@ -82,7 +77,12 @@
             "rarity":1,
             "refine":0,
             "equip":[
-
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             ],
             "slotenhence":[
                 
@@ -102,7 +102,12 @@
             "rarity":1,
             "refine":0,
             "equip":[
-
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             ],
             "slotenhence":[
                 
@@ -122,7 +127,12 @@
             "rarity":1,
             "refine":0,
             "equip":[
-
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             ],
             "slotenhence":[
                 

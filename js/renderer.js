@@ -19,7 +19,7 @@ function link_client(msg){
             console.error(err)
         }
         else{
-            // console.log(res)
+            console.log(res)
             add_block(res)
         }
     })
@@ -37,7 +37,18 @@ function link_client_noblock(msg, func, target){
             // res_ = res
             // return res_
             res = JSON.parse(res);
+            console.log(res)
             func(res["msg"], target)
+        }
+    })
+}
+
+function link_client_noreply(msg){
+    send_msg = JSON.stringify(msg)
+    console.log(send_msg)
+    return thriftClient.send(send_msg, err => {
+        if(err){
+            console.error(err)
         }
     })
 }
@@ -61,4 +72,5 @@ $(document).ready(()=>{
     })
     link_client_pagemain = link_client;
     link_client_noblock_pagemain = link_client_noblock;
+    link_client_noreply_pagemain = link_client_noreply;
 })
